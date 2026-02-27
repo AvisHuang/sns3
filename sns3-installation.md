@@ -53,10 +53,10 @@
 > Path searched for tools: /usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin /bin /usr/games /usr/local/games /snap/bin /snap/bin /build/bin >/home/kevin/build/bin /home/kevin/build/bin /home/kevin/workspace/build/bin bin /home/kevin/workspace/build/lib
 >```
 >unzip tool如果顯示'Problem'可以輸入以下解決
->'''
+>```
 >sudo apt update
-sudo apt install unzip
->'''
+>sudo apt install unzip
+>```
 
 ### Deploy ns3 by bake
 >```
