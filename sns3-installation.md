@@ -82,6 +82,18 @@
 >>> Downloading openflow-dev - (Nothing to do, source directory already exists) - OK
 >>> Downloading ns-3.43 (target directory:ns-3.43) - (Nothing to do, source directory already exists) - OK
 >```
+>在安裝時有'Searching for system dependency cppyy - Problem''Searching for system dependency gi-cairo - Problem''Searching for system dependency gir-bindings - Problem'' Searching for system dependency pygraphviz - Problem'這些問題，這些套件主要是做視覺化介面使用，沒有也無妨，可以用以下補安裝
+>```
+># 針對 gi-cairo, gir-bindings, pygobject
+>sudo apt install python3-gi python3-gi-cairo gir1.2-gtk-3.0
+># 針對 pygraphviz (用於繪製拓樸圖)
+>sudo apt install python3-pygraphviz
+>```
+
+
+
+
+
 ### Configure ns3
 >```
 >cd source/ns-3.43
