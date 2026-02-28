@@ -38,8 +38,8 @@
 - serverd by 5 **gateways (GWs)** and using **Ka-band frequencies**  26.5 GHz ~ 40 GHz on the feeder/user link.
 
 - implements the **DVB-RCS2/S2** standards.
-  - **DVB-RCS2 (return link) : Digital Video Broadcast - Return Channel via Satellite - 2nd generation**
   - **DVB-S2 (forword link) : Digital Video Broadcasting - Satellite - 2nd generation**
+  - **DVB-RCS2 (return link) : Digital Video Broadcast - Return Channel via Satellite - 2nd generation**
 
 ## Frame configuration (框架與時槽結構)
 > Refrence : https://www.sns3.org/doc/satellite-design.html#frame-configuration
