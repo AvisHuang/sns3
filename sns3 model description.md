@@ -69,14 +69,13 @@
 
 > Refrence : [EN 301 545-2 - V1.4.1](https://www.etsi.org/deliver/etsi_en/301500_301599/30154502/01.04.01_60/en_30154502v010401p.pdf) 7.5.1.2
 
-- The used frame structures are dynamically configured by the **Network Control Center (NCC)**.
+- 動態配置結構：使用的訊框結構是由 網路控制中心 (Network Control Center, NCC) 進行動態配置的
   - **Superframe Composition Table (SCT)**
   - **Frame Composition Table v2 (FCT2)**
   - **Broadcast Composition Table (BCT)**
 
-- The satellite module does not explicitly model **SCT**, **FCT** and **BCT**.
-- The frame configurations may be changed via **parametrization**.
-- **NCC** models **Terminal Burst Time Plan v2 (TBTPv2)**.
+- 建模方式：衛星模組並未顯式地建立 SCT、FCT 和 BCT 等表格的模型，但可以透過參數化 (Parametrization) 來更改配置。
+- TBTPv2 協議：NCC 模擬了「終端突發時間計劃 v2 (Terminal Burst Time Plan v2, TBTPv2)」。
   - Is capable of configuring the time slots dynamically for each **superframe** **(e.g. start times, durations, waveforms)**.
 
  ### Forward Link (DVB-S2)
