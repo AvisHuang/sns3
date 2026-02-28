@@ -27,12 +27,12 @@
 - **Satellite Network Simulator 3 (SNS3)** is a satellite network extension to **Network Simulator 3 (ns-3)** platform.
 - **SNS3** models a full interactive multi-spot beam satellite network with a **geostationary satellite (GEO)**.
 - **transparent star (bent-pipe)** payload.
-| | Transparent Mode | Regenerative Mode |
-|-------|-------|-------|
-| 工作原理 | 僅進行放大和頻率轉換,但不做解碼 | 衛星]先進行解調]和解碼]，還原成原始資料，在內部處理後，再重新進行編碼與調變發射出去 |
+
+| 比較項目 | Transparent Mode | Regenerative Mode |
+|-----------|------------------|-------------------|
+| 工作原理 | 僅進行放大和頻率轉換，但不做解碼 | 衛星先進行解調和解碼，還原成原始資料，在內部處理後，再重新進行編碼與調變發射出去 |
 | 優點 | 速度快、靈活性高、衛星簡單 | 訊號品質佳、支援星間鏈路 (ISL) |
 | 缺點 | 雜訊放大 | 複雜且昂貴、缺乏靈活性 |
-
 - reference satellite system have **72 spot-beams with an  European coverage**.
 
 - serverd by 5 **gateways (GWs)** and using **Ka-band frequencies**  26.5 GHz ~ 40 GHz on the feeder/user link.
