@@ -75,8 +75,8 @@
   - **Broadcast Composition Table (BCT)**
 
 - 建模方式：衛星模組並未顯式地建立 SCT、FCT 和 BCT 等表格的模型，但可以透過參數化 (Parametrization) 來更改配置。
-- TBTPv2 協議：NCC 模擬了「終端突發時間計劃 v2 (Terminal Burst Time Plan v2, TBTPv2)」。
-  - Is capable of configuring the time slots dynamically for each **superframe** **(e.g. start times, durations, waveforms)**.
+- TBTPv2 協議：NCC 模擬了「終端突發時間計劃 v2 (TBTPv2)」。
+- 動態時槽配置：它能針對每個超訊框 (Superframe) 動態配置時槽，包括開始時間、持續時間以及波形 (Waveforms)。
 
  ### Forward Link (DVB-S2)
  - Using **DVB-S2 Time Division Multiplexing (TDM)**.
