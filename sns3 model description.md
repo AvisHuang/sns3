@@ -46,7 +46,7 @@
 
 ### Return Link (DVB-RCS2)
 - Use **Multi-Frequency Time Division Multiple Access (MF-TDMA)**.
-  -**TDMA是一種頻寬技術,可以使多個用戶共享同一頻率而不會互相受干擾**
+> TDMA是一種頻寬技術,可以使多個用戶共享同一頻率而不會互相受干擾
 - Composed of:
   1. **Superframe sequences (SFS)**
   2. **Superframes**
