@@ -35,7 +35,7 @@
 | 缺點 | 雜訊放大 | 複雜且昂貴、缺乏靈活性 |
 - reference satellite system have **72 spot-beams with an  European coverage**.
 
-- serverd by 5 **gateways (GWs)** and using ** Ka 頻段 **  26.5 GHz ~ 40 GHz on the feeder/user link.
+- serverd by 5 **gateways (GWs)** and using Ka 頻段 26.5 GHz ~ 40 GHz on the feeder/user link.
 
 - implements the **DVB-RCS2/S2** standards.
   - **DVB-S2 (forword link) : Digital Video Broadcasting - Satellite - 2nd generation**
