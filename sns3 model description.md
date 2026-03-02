@@ -79,7 +79,7 @@
 - 動態時槽配置：它能針對每個超訊框 (Superframe) 動態配置時槽，包括開始時間、持續時間以及波形 (Waveforms)。
   -TBTP:它是 NCC (網路控制中心) 用來執行資源分配的工具，可以決定每個frame的時間
  ### Forward Link (DVB-S2)
- - Using **DVB-S2 Time Division Multiplexing (TDM)**.(時分復用)
+ - Using **DVB-S2 Time Division Multiplexing (TDM)**.(時分複用:傳出去的同時大家都在聽，會根據時間標籤去抓取屬於自己的)
  - feeder link 2 GHz bandwidth is:
    - Divided into **16 carriers**, each **125 MHz**. 
    - Each carrier is statically mapped to a user link frequency color.  *(每個 carrier 固定對應到某一個 user-beam 的 frequency color)*
