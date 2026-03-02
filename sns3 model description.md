@@ -72,14 +72,12 @@
 
 - 動態配置結構：使用的訊框結構是由 網路控制中心 (Network Control Center, NCC) 進行動態配置的
   - **Superframe Composition Table (SCT)：決定超訊框的週期與層級**
-  - **Frame Composition Table v2 (FCT2):定義每一個 Frame 裡面長什麼樣子**
+  - **Frame Composition Table v2 (FCT2):把每一個Frame分成很多時槽**
   - **Broadcast Composition Table (BCT):把這些決定好的規則廣播給所有人**
 
 - 建模方式：衛星模組並未顯式地建立 SCT、FCT 和 BCT 等表格的模型，但可以透過參數化 (Parametrization) 來更改配置。
 - TBTPv2 協議：NCC 模擬了「終端突發時間計劃 v2 (TBTPv2)」。
-- 動態時槽配置：它能針對每個超訊框 (Superframe) 動態配置時槽，包括開始時間、持續時間以及波形 (Waveforms)。
-
-   -TBTP:它是 NCC (網路控制中心) 用來執行資源分配的工具，可以決定每個frame的時間
+   -TBTP:它是 NCC (網路控制中心) 用來執行資源分配的工具，會針對每一個超訊框，動態決定每個用戶的開始發射時間與持續時間
  ### Forward Link (DVB-S2)
  - Using **DVB-S2 Time Division Multiplexing (TDM)**.(時分複用:傳出去的同時大家都在聽，會根據時間標籤去抓取屬於自己的)
  - feeder link 2 GHz bandwidth is:
@@ -99,7 +97,7 @@
 |CSMA channel | Communication between ground user and UT, simulates LAN/shared media  *(模擬地面有線／LAN 通道)*    |
 |SatChannel(GSL)   |	Simulates satellite uplink/downlink (UT ↔ SAT ↔ GW)                      |
 |Ideal channel|	Idealized channel between GW and ground user (no interference or latency) *(無干擾、延遲)*|
-- CSMA為一種LAN傳輸規則，傳輸前會先偵測是否有人在傳，若沒有才會傳
+- CSMA為一種區域網路的傳輸規則，傳輸前會先偵測是否有人在傳，若沒有才會傳
 - All satellite nodes require a new implementation of a ```SatNetDevice```
 - ```SatNetDevice``` implement:
   - **Logical Link Control (LLC)**.
