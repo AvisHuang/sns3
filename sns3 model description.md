@@ -119,7 +119,7 @@
   - **Transport Layer** : Use TCP/UDP end-to-end transport protocols, provides reliability, congestion control, ports.
   - **Application Layer** : Actual applications.
 - This end user simply sends and receives IP traffic over a LAN interface. *(這個 End user 只是透過 LAN 介面收送 IP 流量)*
-  -LAN(Local Area Network)為區域網路,主要指的是範圍較小、私有的網路連接
+  - **LAN(Local Area Network)為區域網路,主要指的是範圍較小、私有的網路連接**
 - It does not know that its packets will cross a satellite system.
 
 ### **2️⃣ UT (User Terminal)**
