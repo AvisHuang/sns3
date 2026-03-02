@@ -107,8 +107,7 @@
 - A new implementation of the Channel class ```SatChannel```.
   - To support satellite system received signal power calculations.
 
-- Satellite module implements both spherical and geodetic coordinate systems (**WGS80** and **GRS84**). 
-  - In addition to labeling latitude, longitude, altitude of UT, GEO satellite and GW.
+- 衛星模組支援球面座標與大地座標系統，以便精確標示UT、GEO與GW的經緯度與高度
 
 *(支援球面/大地座標（WGS80、GRS84），方便標示 UT / SAT / GW 的經緯度與高度)*
 ### **1️⃣ Left side End user（地面使用者）**
