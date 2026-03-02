@@ -98,7 +98,7 @@
 |CSMA channel | Communication between ground user and UT, simulates LAN/shared media  *(模擬地面有線／LAN 通道)*    |
 |SatChannel(GSL)   |	Simulates satellite uplink/downlink (UT ↔ SAT ↔ GW)                      |
 |Ideal channel|	Idealized channel between GW and ground user (no interference or latency) *(無干擾、延遲)*|
-
+- CSMA為一種LAN傳輸規則，傳輸前會先偵測是否有人在傳，若沒有才會傳
 - All satellite nodes require a new implementation of a ```SatNetDevice```
 - ```SatNetDevice``` implement:
   - **Logical Link Control (LLC)**.
