@@ -70,9 +70,9 @@
 > Refrence : [EN 301 545-2 - V1.4.1](https://www.etsi.org/deliver/etsi_en/301500_301599/30154502/01.04.01_60/en_30154502v010401p.pdf) 7.5.1.2
 
 - 動態配置結構：使用的訊框結構是由 網路控制中心 (Network Control Center, NCC) 進行動態配置的
-  - **Superframe Composition Table (SCT)**
-  - **Frame Composition Table v2 (FCT2)**
-  - **Broadcast Composition Table (BCT)**
+  - **Superframe Composition Table (SCT)：決定超訊框的週期與層級**
+  - **Frame Composition Table v2 (FCT2):定義每一個 Frame 裡面長什麼樣子**
+  - **Broadcast Composition Table (BCT):把這些決定好的規則廣播給所有人**
 
 - 建模方式：衛星模組並未顯式地建立 SCT、FCT 和 BCT 等表格的模型，但可以透過參數化 (Parametrization) 來更改配置。
 - TBTPv2 協議：NCC 模擬了「終端突發時間計劃 v2 (TBTPv2)」。
