@@ -114,10 +114,10 @@
 - Connection :
   - Use **CSMA channel** (Carrier Sense Multiple Access) connect to User Terminal(UT).
 - Protocol Stack :
-  - **Data Link Layer (CSMA)** : Ethernet link to the UT.
-  - **Network Layer** : An Ip layer(IPv4 or IPv6), responsible for packet routing by IPv4.
-  - **Transport Layer** : Use TCP/UDP end-to-end transport protocols, provides reliability, congestion control, ports.
-  - **Application Layer** : Actual applications.
+  - **Data Link Layer (CSMA)** : Ethernet link to the UT.(負責乙太網路的傳輸規則)
+  - **Network Layer** : An Ip layer(IPv4 or IPv6), responsible for packet routing by IPv4.(決定封包下一個位置要往哪裡走)
+  - **Transport Layer** : Use TCP/UDP end-to-end transport protocols, provides reliability, congestion control, ports.(負責可靠性與擁塞控制)
+  - **Application Layer** : Actual applications.(實際運作的程式,e.g.網頁瀏覽器、串流影片)
 - This end user simply sends and receives IP traffic over a LAN interface. *(這個 End user 只是透過 LAN 介面收送 IP 流量)*
   - **LAN(Local Area Network)為區域網路,主要指的是範圍較小、私有的網路連接**
 - It does not know that its packets will cross a satellite system.
