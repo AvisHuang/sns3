@@ -82,13 +82,16 @@
  - Using **DVB-S2 Time Division Multiplexing (TDM)**.(時分複用:傳出去的同時大家都在聽，會根據時間標籤去抓取屬於自己的)
  - feeder link 2 GHz bandwidth is:
    - Divided into **16 carriers**, each **125 MHz**. 
-   - Each carrier is statically mapped to a user link frequency color.  *(每個 carrier 固定對應到某一個 user-beam 的 frequency color)*
+   - Each carrier is statically mapped to a user link frequency color.  *(每個 carrier 固定對應到某一個 user-beam 的頻率範圍)*
    - Only one carrier per beam is supported.    *(每個 beam 只支援 一個 carrier)*
   
 ## Architecture (整體架構)
 <img width="1300" height="537" alt="image" src="https://github.com/user-attachments/assets/5949f5b4-03a9-46ba-9677-3c0bd824779f" />
 <p align="center"><strong>Figure 3.</strong> SNS3 Architecture </p>
 
+UT:將一般網路訊號轉為衛星訊號
+GW:連接衛星網路與地面核心網路的關鍵節點
+CSMA:地面有線網路
 > Refrence : https://www.sns3.org/doc/satellite-design.html#fig-satellite-general-architecture
 
 ### Communication Channels
