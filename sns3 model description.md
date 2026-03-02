@@ -96,7 +96,7 @@
 |Channel Name	|Description|
 |---|---|
 |CSMA channel | Communication between ground user and UT, simulates LAN/shared media  *(模擬地面有線／LAN 通道)*    |
-|SatChannel   |	Simulates satellite uplink/downlink (UT ↔ SAT ↔ GW)                      |
+|SatChannel(GSL)   |	Simulates satellite uplink/downlink (UT ↔ SAT ↔ GW)                      |
 |Ideal channel|	Idealized channel between GW and ground user (no interference or latency) *(無干擾、延遲)*|
 
 - All satellite nodes require a new implementation of a ```SatNetDevice```
