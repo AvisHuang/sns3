@@ -239,8 +239,33 @@ ls
                        DataRateValue(DataRate("100Mb/s")));
   ```
 - 2.拓撲建構與場景資源加載
+  - 加載場景資源
+  ```
+  simulationHelper->LoadScenario(scenarioFolder);
+  ```
+  - 建立物理拓撲
+  ```
+  simulationHelper->CreateSatScenario();
+  ```
 - 3.流量路徑與統計配置
+  - 獲取節點容器
+  ```
+  NodeContainer gws = Singleton<SatTopology>::Get()->GetGwNodes();
+  ```
+  - 設定雙向 CBR 流量
+  ```
+  trafficHelper->AddCbrTraffic(...);
+  ```
+  - 配置數據收集器
+  ```
+  s->AddPerIslPacketDropRate(...);
+  ```
 - 4.模擬執行與輸出
+  - 執行模擬
+  ```
+  simulationHelper->RunSimulation();
+  ```
+ 
 
 
 
