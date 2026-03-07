@@ -230,8 +230,8 @@ ls
   ```
   - [啟動再生網路模式](https://github.com/sns3/sns3-satellite/blob/0fc2b8c74f0d9c2b0c3ee4ed132064a40ad2daf1/examples/sat-constellation-example.cc#L64-L65)
   ```
-  Config::SetDefault("ns3::SatConf::ForwardLinkRegenerationMode",  #如果沒有規定
-                       EnumValue(SatEnums::REGENERATION_NETWORK));
+  Config::SetDefault("ns3::SatConf::ForwardLinkRegenerationMode",  #設定全域預設值;指定forwordlink用RegenerationMode
+                       EnumValue(SatEnums::REGENERATION_NETWORK)); #把衛星設定成regeneration模式 同時也使衛星具備路由功能。
   ```
   - [設定 ISL 鏈路頻寬](https://github.com/sns3/sns3-satellite/blob/0fc2b8c74f0d9c2b0c3ee4ed132064a40ad2daf1/examples/sat-constellation-example.cc#L72)
   ```
