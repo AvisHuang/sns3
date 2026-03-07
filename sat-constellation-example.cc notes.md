@@ -155,7 +155,7 @@ ls
 > refernce:https://github.com/sns3/sns3-data/tree/master/scenarios/constellation-leo-2-satellites/positions
 
 
-### 位置設定檔
+### 一、位置設定檔
 - 1.isls.txt
 ```
 1
@@ -212,7 +212,7 @@ ls
 | 4 | UT ID = 11的北緯東經高度 |
 | 5 | UT ID = 12的北緯東經高度 |
 
-### sat-constellation-examples.cc
+### 二、sat-constellation-examples.cc
 執行流程圖
 <img width="717" height="193" alt="image" src="https://github.com/user-attachments/assets/e8130656-6e2f-4db0-9c82-c4263b7db876" />
 
