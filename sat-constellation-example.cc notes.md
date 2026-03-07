@@ -231,17 +231,17 @@ ls
   - [啟動再生網路模式](https://github.com/sns3/sns3-satellite/blob/0fc2b8c74f0d9c2b0c3ee4ed132064a40ad2daf1/examples/sat-constellation-example.cc#L64-L65)
   ```
   Config::SetDefault("ns3::SatConf::ForwardLinkRegenerationMode",  #設定全域預設值;指定forwordlink用RegenerationMode
-                       EnumValue(SatEnums::REGENERATION_NETWORK)); #把衛星設定成regeneration模式 同時也使衛星具備路由功能。
+                       EnumValue(SatEnums::REGENERATION_NETWORK)); #把衛星設定成regeneration模式 同時也使衛星具備路由功能
   ```
   - [設定 ISL 鏈路頻寬](https://github.com/sns3/sns3-satellite/blob/0fc2b8c74f0d9c2b0c3ee4ed132064a40ad2daf1/examples/sat-constellation-example.cc#L72)
   ```
    Config::SetDefault("ns3::PointToPointIslHelper::IslDataRate",
-                       DataRateValue(DataRate("100Mb/s")));
+                       DataRateValue(DataRate("100Mb/s")));        #把所有衛星之間的ISL速度統一設定為每秒 100Mb
   ```
 - 2.拓撲建構與場景資源加載
   - 加載場景資源
   ```
-  simulationHelper->LoadScenario(scenarioFolder);
+  simulationHelper->LoadScenario(scenarioFolder);                  #設定使用場景為LEO
   ```
   - 建立物理拓撲
   ```
