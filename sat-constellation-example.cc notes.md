@@ -155,8 +155,8 @@ ls
 > refernce:https://github.com/sns3/sns3-data/tree/master/scenarios/constellation-leo-2-satellites/positions
 
 
-### 一、位置設定檔
-- isls.txt
+### 一、[位置設定檔](https://github.com/sns3/sns3-data/tree/master/scenarios/constellation-leo-2-satellites/positions)
+- [isls.txt](https://github.com/sns3/sns3-data/blob/master/scenarios/constellation-leo-2-satellites/positions/isls.txt)
 ```
 1
 0 1
@@ -166,7 +166,7 @@ ls
 | 1 | 有1條isl |
 | 2 | 這條isl是連接sat0 sat1 |
 
-- tles.txt
+- [tles.txt](https://github.com/sns3/sns3-data/blob/master/scenarios/constellation-leo-2-satellites/positions/tles.txt)
 ```
 2
 0 ISS Zarya
@@ -186,7 +186,7 @@ ls
 | 6 | sat1的參數(衛星編號,分類,國際設計者代碼,曆元,平均運動一階導數,阻力項) |
 | 7 | sat1的參數(軌道傾角,升交點赤經,軌道偏心率,近地點幅角,平近點角,平均運動) |
 
-- gw_position.txt
+- [gw_position.txt](https://github.com/sns3/sns3-data/blob/master/scenarios/constellation-leo-2-satellites/positions/gw_positions.txt)
 ```
 17.69 101.62 0.0
 15.93 96.54 0.0
@@ -196,7 +196,7 @@ ls
 | 1 | GW ID = 2的北緯東經高度 |
 | 2 | GW ID = 3的北緯東經高度 |
 
-- UT_positions.txt
+- [UT_positions.txt](https://github.com/sns3/sns3-data/blob/master/scenarios/constellation-leo-2-satellites/positions/ut_positions.txt)
 ```
 20 110 0.0
 21 111 0.0
@@ -212,18 +212,28 @@ ls
 | 4 | UT ID = 11的北緯東經高度 |
 | 5 | UT ID = 12的北緯東經高度 |
 
-### 二、sat-constellation-examples.cc
+### 二、[sat-constellation-examples.cc](https://github.com/sns3/sns3-satellite/blob/master/examples/sat-constellation-example.cc)
 
 <img width="717" height="193" alt="image" src="https://github.com/user-attachments/assets/e8130656-6e2f-4db0-9c82-c4263b7db876" />
 
 執行流程圖
 
 - 1.參數初始化與全域設定
-  - 設定模擬場景與封包參數
+  - [設定模擬場景與封包參數](https://github.com/sns3/sns3-satellite/blob/0fc2b8c74f0d9c2b0c3ee4ed132064a40ad2daf1/examples/sat-constellation-example.cc#L46)
   ```
     uint32_t packetSize = 512;                                     #封包大小為512bytes
     std::string interval = "20ms";                                 #傳輸時間間隔為20ms
     std::string scenarioFolder = "constellation-leo-2-satellites"; #使用的場景為LEO
+  ```
+  - [啟動再生網路模式](https://github.com/sns3/sns3-satellite/blob/0fc2b8c74f0d9c2b0c3ee4ed132064a40ad2daf1/examples/sat-constellation-example.cc#L64-L65)
+  ```
+  Config::SetDefault("ns3::SatConf::ForwardLinkRegenerationMode",  #如果沒有規定
+                       EnumValue(SatEnums::REGENERATION_NETWORK));
+  ```
+  - [設定 ISL 鏈路頻寬](https://github.com/sns3/sns3-satellite/blob/0fc2b8c74f0d9c2b0c3ee4ed132064a40ad2daf1/examples/sat-constellation-example.cc#L72)
+  ```
+   Config::SetDefault("ns3::PointToPointIslHelper::IslDataRate",
+                       DataRateValue(DataRate("100Mb/s")));
   ```
 - 2.拓撲建構與場景資源加載
 - 3.流量路徑與統計配置
