@@ -217,11 +217,16 @@ ls
 <img width="717" height="193" alt="image" src="https://github.com/user-attachments/assets/e8130656-6e2f-4db0-9c82-c4263b7db876" />
 執行流程圖
 
-- 參數初始化與全域設定
-  - 1   
-- 拓撲建構與場景資源加載
-- 流量路徑與統計配置
-- 模擬執行與輸出
+- 1.參數初始化與全域設定
+  - 設定模擬場景與封包參數
+  ```
+    uint32_t packetSize = 512;   #封包大小為512bytes
+    std::string interval = "20ms";#傳輸時間間隔為20ms
+    std::string scenarioFolder = "constellation-leo-2-satellites";#使用的廠警為LEO
+  ```
+- 2.拓撲建構與場景資源加載
+- 3.流量路徑與統計配置
+- 4.模擬執行與輸出
 
 
 
