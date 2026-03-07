@@ -214,9 +214,12 @@ ls
 
 ### 二、[sat-constellation-examples.cc](https://github.com/sns3/sns3-satellite/blob/master/examples/sat-constellation-example.cc)
 
+<div align="center">
+
 <img width="717" height="193" alt="image" src="https://github.com/user-attachments/assets/e8130656-6e2f-4db0-9c82-c4263b7db876" />
 
 執行流程圖
+</div>
 
 - 1.參數初始化與全域設定
   - [設定模擬場景與封包參數](https://github.com/sns3/sns3-satellite/blob/0fc2b8c74f0d9c2b0c3ee4ed132064a40ad2daf1/examples/sat-constellation-example.cc#L46)
