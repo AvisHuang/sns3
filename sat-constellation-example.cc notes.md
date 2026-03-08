@@ -226,7 +226,7 @@ ls
   ```
     uint32_t packetSize = 512;                                     #封包大小為512bytes
     std::string interval = "20ms";                                 #傳輸時間間隔為20ms
-    std::string scenarioFolder = "constellation-leo-2-satellites"; #使用的場景為LEO
+    std::string scenarioFolder = "constellation-leo-2-satellites"; #宣告之後的場景是用LEO的環境
   ```
   - [啟動再生網路模式](https://github.com/sns3/sns3-satellite/blob/0fc2b8c74f0d9c2b0c3ee4ed132064a40ad2daf1/examples/sat-constellation-example.cc#L64-L65)
   ```
@@ -241,12 +241,22 @@ ls
 - 2.拓撲建構與場景資源加載
   - 加載場景資源
   ```
-  simulationHelper->LoadScenario(scenarioFolder);                  #設定使用場景為LEO
+  simulationHelper->LoadScenario(scenarioFolder);                  #載入scenario資料夾裡的資料(目前是LEO)會取得beam position waveform standard等資訊
   ```
   - 建立物理拓撲
   ```
-  simulationHelper->CreateSatScenario();
+  simulationHelper->CreateSatScenario();                           #實際按照scenariofolder的位置把實際的衛星及地面站蓋出來
   ```
+    - 實體節點:(simulation-helper.cc)
+      ```
+      m_satHelper->LoadConstellationScenario(
+      beamInfo,
+      MakeCallback(&SimulationHelper::GetNextUtUserCount, this));
+      ```
+      (simulation-helper.cc)
+    - 鋪設物理連線
+    - 啟動網路大腦
+  
 - 3.流量路徑與統計配置
   - 獲取節點容器
   ```
