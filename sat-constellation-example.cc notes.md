@@ -247,15 +247,14 @@ ls
   ```
   simulationHelper->CreateSatScenario();                           #實際按照scenariofolder的位置把實際的衛星及地面站蓋出來
   ```
-    - 實體節點:(simulation-helper.cc)
+    1. 實體節點:(simulation-helper.cc)
       ```
-      m_satHelper->LoadConstellationScenario(
-      beamInfo,
-      MakeCallback(&SimulationHelper::GetNextUtUserCount, this));
+      m_satHelper->LoadConstellationScenario(                      #去讀TLE檔算出裡面有幾顆衛星然後在模擬器把這些衛星建立出來
+      beamInfo,                                                    #負責記錄哪些beam是啟用的
+      MakeCallback(&SimulationHelper::GetNextUtUserCount, this));  #會回傳要在UT建多少USER(分配用戶)
       ```
-      (simulation-helper.cc)
-    - 鋪設物理連線
-    - 啟動網路大腦
+    2. 鋪設物理連線
+    3. 啟動網路大腦
   
 - 3.流量路徑與統計配置
   - 獲取節點容器
