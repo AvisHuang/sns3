@@ -239,16 +239,15 @@ ls
                        DataRateValue(DataRate("100Mb/s")));        #把所有衛星之間的ISL速度統一設定為每秒 100Mb
   ```
 - 2.拓撲建構與場景資源加載
-  - 加載場景資源
+  - [加載場景資源](https://github.com/sns3/sns3-satellite/blob/0fc2b8c74f0d9c2b0c3ee4ed132064a40ad2daf1/examples/sat-constellation-example.cc#L93)
   ```
   simulationHelper->LoadScenario(scenarioFolder);                  #載入scenario資料夾裡的資料(目前是LEO)會取得beam position waveform standard等資訊
   ```
-  - 建立物理拓撲
+  - [建立物理拓撲](https://github.com/sns3/sns3-satellite/blob/0fc2b8c74f0d9c2b0c3ee4ed132064a40ad2daf1/examples/sat-constellation-example.cc#L120)
   ```
   simulationHelper->CreateSatScenario();                           #實際按照scenariofolder的位置把實際的衛星及地面站蓋出來
   ```
     1. 實體節點:([simulation-helper.cc](https://github.com/sns3/sns3-satellite/blob/master/helper/simulation-helper.cc))
-       
       ```
       m_satHelper->LoadConstellationScenario(                      #去讀TLE檔算出裡面有幾顆衛星然後在模擬器把這些衛星建立出來
       beamInfo,                                                    #負責記錄哪些beam是啟用的
