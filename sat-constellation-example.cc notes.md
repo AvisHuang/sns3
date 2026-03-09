@@ -252,7 +252,7 @@ ls
         ```
         m_satHelper->LoadConstellationScenario(                      #去讀TLE檔算出裡面有幾顆衛星然後在模擬器把這些衛星建立出來(使用NodeContainer::Create()函式)
         beamInfo,                                                    #負責記錄哪些beam是啟用的
-        MakeCallback(&SimulationHelper::GetNextUtUserCount, this));  #會回傳要在UT建多少USER(分配用戶)
+        MakeCallback(&SimulationHelper::GetNextUtUserCount, this));  #會回傳sat_helper要在UT建多少USER(分配用戶)
         ```
     2. 鋪設物理連線([satellite-point-to-point-isl-helper.cc](https://github.com/sns3/sns3-satellite/blob/master/helper/satellite-point-to-point-isl-helper.cc))
 
