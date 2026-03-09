@@ -257,9 +257,6 @@ ls
     2. 鋪設物理連線([satellite-point-to-point-isl-helper.cc](https://github.com/sns3/sns3-satellite/blob/master/helper/satellite-point-to-point-isl-helper.cc))
 
        ```
-        devA->SetDataRate (m_deviceRate);                          #會去point-to-point-isl-helper.cc找devA->SetDataRate(m_dataRate);
-
-        // 建立物理層通道(#會去point-to-point-isl-helper.cc)
         Ptr<PointToPointChannel> channel = CreateObject<PointToPointChannel> (); #建立一個點對點通道,Ptr<PointToPointChannel>:指標名;channel:網路線的名字;CreateObject:建立物件的指令;<PointToPointChannel>:指定通道類型
         devA->Attach (channel);                                    #將sat0的網卡街道channel上
         devB->Attach (channel);                                    #將sat1的網卡接到channel上
