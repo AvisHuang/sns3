@@ -254,7 +254,7 @@ ls
       beamInfo,                                                    #負責記錄哪些beam是啟用的
       MakeCallback(&SimulationHelper::GetNextUtUserCount, this));  #會回傳要在UT建多少USER(分配用戶)
      ```
-    2. 鋪設物理連線
+    2. 鋪設物理連線([satellite-point-to-point-isl-helper.cc](https://github.com/sns3/sns3-satellite/blob/master/helper/satellite-point-to-point-isl-helper.cc))
 
        ```
         devA->SetDataRate (m_deviceRate);                          #會去point-to-point-isl-helper.cc找devA->SetDataRate(m_dataRate);
