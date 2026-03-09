@@ -249,11 +249,11 @@ ls
   ```
     1. 實體節點:([simulation-helper.cc](https://github.com/sns3/sns3-satellite/blob/master/helper/simulation-helper.cc))
 
-    ```
-      m_satHelper->LoadConstellationScenario(                      #去讀TLE檔算出裡面有幾顆衛星然後在模擬器把這些衛星建立出來(使用NodeContainer::Create()函式)
-      beamInfo,                                                    #負責記錄哪些beam是啟用的
-      MakeCallback(&SimulationHelper::GetNextUtUserCount, this));  #會回傳要在UT建多少USER(分配用戶)
-     ```
+        ```
+        m_satHelper->LoadConstellationScenario(                      #去讀TLE檔算出裡面有幾顆衛星然後在模擬器把這些衛星建立出來(使用NodeContainer::Create()函式)
+        beamInfo,                                                    #負責記錄哪些beam是啟用的
+        MakeCallback(&SimulationHelper::GetNextUtUserCount, this));  #會回傳要在UT建多少USER(分配用戶)
+        ```
     2. 鋪設物理連線([satellite-point-to-point-isl-helper.cc](https://github.com/sns3/sns3-satellite/blob/master/helper/satellite-point-to-point-isl-helper.cc))
 
        ```
@@ -263,8 +263,7 @@ ls
         Ptr<PointToPointChannel> channel = CreateObject<PointToPointChannel> (); #建立一個點對點通道,Ptr<PointToPointChannel>:指標名;channel:網路線的名字;CreateObject:建立物件的指令;<PointToPointChannel>:指定通道類型
         devA->Attach (channel);                                    #將sat0的網卡街道channel上
         devB->Attach (channel);                                    #將sat1的網卡接到channel上
-       ```
-    4. 啟動網路大腦
+       ```       
   
 - 3.流量路徑與統計配置
   - 獲取節點容器
