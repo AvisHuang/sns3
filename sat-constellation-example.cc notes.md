@@ -255,7 +255,17 @@ ls
       MakeCallback(&SimulationHelper::GetNextUtUserCount, this));  #會回傳要在UT建多少USER(分配用戶)
       ```
     2. 鋪設物理連線
-    3. 啟動網路大腦
+
+       ```
+        // 設定你在 example.cc 定義的 100Mb/s
+        devA->SetDataRate (m_deviceRate); // m_deviceRate 來自 IslDataRate 設定
+
+        // 建立物理層通道 (Channel)
+        Ptr<PointToPointChannel> channel = CreateObject<PointToPointChannel> ();
+        devA->Attach (channel);
+        devB->Attach (channel);
+       ```
+    4. 啟動網路大腦
   
 - 3.流量路徑與統計配置
   - 獲取節點容器
