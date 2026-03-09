@@ -268,15 +268,18 @@ ls
 - 3.流量路徑與統計配置
   - 獲取節點容器
   ```
-  NodeContainer gws = Singleton<SatTopology>::Get()->GetGwNodes();
+  NodeContainer gws = Singleton<SatTopology>::Get()->GetGwNodes(); #宣告gw,向衛星拓撲總管取得目前的權限,篩選出所有的gw節點
+  NodeContainer uts = Singleton<SatTopology>::Get()->GetUtNodes(); #宣告ut,向衛星拓撲總管取得目前的權限,篩選出所有的ut節點
+  NodeContainer gwUsers = Singleton<SatTopology>::Get()->GetGwUserNodes(); #宣告gwuser,向衛星拓撲總管取得目前的權限,篩選出所有的gwuser節點
+  NodeContainer utUsers = Singleton<SatTopology>::Get()->GetUtUserNodes(uts); #宣告utuser,向衛星拓撲總管取得目前的權限,篩選出所有的utuser節點
   ```
   - 設定雙向 CBR 流量
   ```
   trafficHelper->AddCbrTraffic(...);
   ```
-  - 配置數據收集器
+  - [配置數據收集器](https://github.com/sns3/sns3-satellite/blob/0fc2b8c74f0d9c2b0c3ee4ed132064a40ad2daf1/helper/simulation-helper.cc#L828)
   ```
-  s->AddPerIslPacketDropRate(...);
+  m_statContainer->->Add....
   ```
 - 4.模擬執行與輸出
   - 執行模擬
