@@ -289,15 +289,15 @@ ls
 ### routing演算法
 使用最短路徑演算法做計算
 ```
-void GlobalRouteManagerImpl::SPFCalculate (Ipv4Address root) {
-    // 1. 初始化鏈路狀態資料庫（LSDB），確保所有的 LSA（Link State Advertisement）狀態標記為未處理
+void GlobalRouteManagerImpl::SPFCalculate (Ipv4Address root) {   //GlobalRouteManagerImpl為一個計算路徑的類別;SPFCalculate (Ipv4Address root)為計算最短路徑的函式(shortest path first);Ipv4Address root:現在這顆衛星的Ip
+    // 1. 初始化鏈路狀態資料庫（LSDB），確保所有的link狀態標記為未處理
     m_lsdb->Initialize (); 
     
-    // 建立一個優先隊列（Priority Queue），用來存放待處理的節點，並自動按距離排序
+    // 建立一個待選名單
     CandidateQueue candidate; 
     
     // 2. 建立起點節點（根節點），獲取該 IP 對應的 LSA 資訊，這是 Dijkstra 演算法的「起始點」
-    v = new SPFVertex (m_lsdb->GetLSA (root)); 
+    v = new SPFVertex (m_lsdb->GetLSA (root)); //傳入現在ip位置 然後去lsdb看跟鄰居的LSA(連線的資訊),SPFVertex為把現在的鏈路再加上標記(距離等等)
     
     // 將起點到自己的距離設為 0，因為出發點就在這裡
     v->SetDistanceFromRoot (0); 
@@ -314,7 +314,7 @@ void GlobalRouteManagerImpl::SPFCalculate (Ipv4Address root) {
         v = candidate.Pop (); 
         
         // 5. 判斷該節點是否為路由器（Router），如果是，則將其正式納入最短路徑樹中
-        if (v->GetVertexType () == SPFVertex::VertexRouter) {
+        if (v->GetVertexType () == SPFVertex::VertexRouter) {    //SPFVertex為最短路徑頂點物件,裡面有LSA,節點類型...
             // 將計算好的最短路徑與下一跳（Next Hop）資訊寫入該節點的內部路由條目中
             SPFIntraAddRouter (v); 
         }
