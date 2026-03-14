@@ -286,7 +286,41 @@ ls
   ```
  
 ## routing
-
+### routing演算法
+使用最短路徑演算法做計算
+```
+void GlobalRouteManagerImpl::SPFCalculate (Ipv4Address root) {
+    // 1. 初始化鏈路狀態資料庫（LSDB），確保所有的 LSA（Link State Advertisement）狀態標記為未處理
+    m_lsdb->Initialize (); 
+    
+    // 建立一個優先隊列（Priority Queue），用來存放待處理的節點，並自動按距離排序
+    CandidateQueue candidate; 
+    
+    // 2. 建立起點節點（根節點），獲取該 IP 對應的 LSA 資訊，這是 Dijkstra 演算法的「起始點」
+    v = new SPFVertex (m_lsdb->GetLSA (root)); 
+    
+    // 將起點到自己的距離設為 0，因為出發點就在這裡
+    v->SetDistanceFromRoot (0); 
+    
+    // 開始無窮迴圈，直到所有可達的節點都被計算完畢並加入 SPF 樹
+    for (;;) {
+        // 3. 探測目前節點 (v) 的所有相連鄰居，計算經過 v 到鄰居的累積距離（Metric），並放入候選名單中
+        SPFNext (v, candidate); 
+        
+        // 如果候選隊列為空，代表所有能到達的節點都已經算完了，或是剩下的節點都不可達，跳出迴圈
+        if (candidate.Size () == 0) break; 
+        
+        // 4. 「貪婪選擇」：從候選隊列中彈出（Pop）目前累積距離最短的節點作為下一個處理對象
+        v = candidate.Pop (); 
+        
+        // 5. 判斷該節點是否為路由器（Router），如果是，則將其正式納入最短路徑樹中
+        if (v->GetVertexType () == SPFVertex::VertexRouter) {
+            // 將計算好的最短路徑與下一跳（Next Hop）資訊寫入該節點的內部路由條目中
+            SPFIntraAddRouter (v); 
+        }
+    }
+}
+```
 
 
 
