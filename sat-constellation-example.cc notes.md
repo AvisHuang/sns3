@@ -290,6 +290,12 @@ ls
 ```
 Config::SetDefault("ns3::SatSGP4MobilityModel::UpdatePositionPeriod", TimeValue(Seconds(1)));
 ```
+### OSPFv2
+- 一種網路協議,負責負責「收集資訊」和「制定規則」
+  - 鄰居發現:發送hello封包確認路由器與誰連接
+  - LSA泛洪：Router會交換LSA(包括:連到誰距離、彼此距離)
+  - SPF計算：藉由LSA建立拓撲資料庫(LSDB)
+
 ### routing演算法
 使用最短路徑演算法做計算
 ```
@@ -322,6 +328,21 @@ void GlobalRouteManagerImpl::SPFCalculate (Ipv4Address root) {   //GlobalRouteMa
             // 將計算好的最短路徑與下一跳（Next Hop）資訊寫入該節點的內部路由條目中
             SPFIntraAddRouter (v); 
         }
+    }
+}
+```
+
+### 寫入路由表
+```
+void GlobalRouteManagerImpl::SPFIntraAddRouter (SPFVertex* v) {
+    // 取得該節點的路由協議 (通常是 Ipv4GlobalRouting)
+    Ptr<Ipv4GlobalRouting> gr = router->GetRoutingProtocol ();
+    
+    // 遍歷所有計算出的出口方向
+    for (uint32_t i = 0; i < v->GetNRootExitDirections (); i++) {
+        SPFVertex::NodeExit_t exit = v->GetRootExitDirection (i);
+        // 這裡就是你看到的：將計算結果增加到路由表中
+        gr->AddHostRouteTo (lr->GetLinkData (), exit.first, exit.second);
     }
 }
 ```
