@@ -286,6 +286,10 @@ ls
   ```
  
 ## routing
+### 衛星位置更新時間 
+```
+Config::SetDefault("ns3::SatSGP4MobilityModel::UpdatePositionPeriod", TimeValue(Seconds(1)));
+```
 ### routing演算法
 使用最短路徑演算法做計算
 ```
