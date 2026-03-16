@@ -290,6 +290,7 @@ ls
 ```
 Config::SetDefault("ns3::SatSGP4MobilityModel::UpdatePositionPeriod", TimeValue(Seconds(1)));
 ```
+> reference:https://github.com/AvisHuang/sns3/blob/main/global-routing.h
 ### OSPFv2
 - 一種網路協議,負責負責「收集資訊」和「制定規則」
   - 鄰居發現:發送hello封包確認路由器與誰連接
