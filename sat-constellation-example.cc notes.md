@@ -350,14 +350,14 @@ void GlobalRouteManagerImpl::SPFCalculate (Ipv4Address root) {   //GlobalRouteMa
 ### 寫入路由表
 ```
 void GlobalRouteManagerImpl::SPFIntraAddRouter (SPFVertex* v) {
-    // 取得該節點的路由協議 (通常是 Ipv4GlobalRouting)
+    // 取得該節點的路由協議 
     Ptr<Ipv4GlobalRouting> gr = router->GetRoutingProtocol ();
     
     // 遍歷所有計算出的出口方向
-    for (uint32_t i = 0; i < v->GetNRootExitDirections (); i++) {
+    for (uint32_t i = 0; i < v->GetNRootExitDirections (); i++) {  //v->GetNRootExitDirections():到達這個頂點v有多少種等代價最短路徑
         SPFVertex::NodeExit_t exit = v->GetRootExitDirection (i);
-        // 這裡就是你看到的：將計算結果增加到路由表中
-        gr->AddHostRouteTo (lr->GetLinkData (), exit.first, exit.second);
+        // 將計算結果增加到路由表中
+        gr->AddHostRouteTo (lr->GetLinkData (), exit.first, exit.second);//lr->GetLinkData()：目標節點的ip;exit.first下一跳IP;exit.second：本地出接口
     }
 }
 ```
