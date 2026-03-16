@@ -26,7 +26,7 @@
  * static unicast forwarding tables for each node.
  *
  *#
- *建議用在有限的環境下
+ *因為在同一通道的節點會直接視為可以通信，所以建議用在有線的環境下(無線會有誤差)
  *#
  * The model assumes that all nodes on an ns-3 channel are reachable to
  * one another, regardless of whether the nodes can use the channel
