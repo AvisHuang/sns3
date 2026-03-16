@@ -312,7 +312,7 @@ Config::SetDefault("ns3::SatSGP4MobilityModel::UpdatePositionPeriod", TimeValue(
   - SPF計算：藉由LSA建立拓撲資料庫(LSDB)
 
 ### routing演算法
-使用最短路徑演算法做計算
+使用[最短路徑演算法做計算](https://github.com/AvisHuang/sns3/blob/fe3a64fc064785cc0f2a98fdcec9066c5601fab4/global-route-manager-impl.cc#L1317)
 ```
 void GlobalRouteManagerImpl::SPFCalculate (Ipv4Address root) {   //GlobalRouteManagerImpl為一個計算路徑的類別;SPFCalculate (Ipv4Address root)為計算最短路徑的函式(shortest path first);Ipv4Address root:現在這顆衛星的Ip
     // 1. 初始化鏈路狀態資料庫（LSDB），確保所有的link狀態標記為未處理
