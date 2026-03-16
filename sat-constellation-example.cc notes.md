@@ -2,11 +2,20 @@
 > refrence : https://github.com/sns3/sns3-satellite/blob/master/examples/sat-constellation-example.cc
 
 # Table of Contents 
-- [Table of Contents](#table-of-contents)
+- [說明](#說明)
 - [Step](#step)
 - [修改LEO環境](#修改leo環境)
 - [topology](#topology)
 - [routing](#routing)
+## 說明
+sat-constellation-example.cc 是一個 ns-3 衛星網路模擬的範例腳本
+
+#### 重要程式碼
+設定模擬時間:
+```
+ simulationHelper->SetSimulationTime(Seconds(30));
+```
+
 
 ## Step
 ```
