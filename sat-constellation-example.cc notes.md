@@ -15,7 +15,11 @@ sat-constellation-example.cc 是一個 ns-3 衛星網路模擬的範例腳本
 ```
  simulationHelper->SetSimulationTime(Seconds(30));
 ```
-
+封包傳輸時間
+```
+Time startTime = Seconds(1.0);
+Time stopTime = Seconds(29.0);
+```
 
 ## Step
 ```
