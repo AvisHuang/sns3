@@ -344,7 +344,7 @@ SetMulticastRouteToSourceNetworkSatHelper::(Ptr<Node> source, Ptr<Node> dest)
         // add default multicast route only if it does not exist already   
         if (!defaultMulticastRouteExists)  //如果前面迴圈沒找到符合的路
         {
-            multicast.SetDefaultMulticastRoute(source, devices.first);  //以後只要目的地是224.0.0.0/4，全部從devices.first這張網卡發射出去。
+            multicast.SetDefaultMulticastRoute(source, devices.first);  //helper會去source把預設的組撥ip改成devices裡面的
         }
     }
 }
