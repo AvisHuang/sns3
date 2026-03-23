@@ -16,8 +16,8 @@ sat-constellation-example.cc 是一個 ns-3 衛星網路模擬的範例腳本
 SGP4 模型：透過SGP4模型每1秒更新一次位置  
 ISL 頻寬：100MB  
 輸出：  
-PrintTopology：ISL連結圖  
-ShowIslMap：印出整個星座的層級結構
+PrintTopology(sat-topology.cc)：ISL連結圖  
+ShowIslMap(sat-id-mapper.cc)：印出整個星座的層級結構
 ### 2.流量輸入
 輸入：  
 packetSize：封包大小(預設 512 bytes)  
