@@ -11,8 +11,8 @@
 sat-constellation-example.cc 是一個 ns-3 衛星網路模擬的範例腳本
 ## 二、輸入及輸出
 ### 1.拓樸與環境輸入
-輸入TLE：透過scenarioFolder讀取衛星軌道參數
-SGP4 模型：透過SGP4模型每1秒更新一次位置
+輸入TLE：透過scenarioFolder讀取衛星軌道參數  
+SGP4 模型：透過SGP4模型每1秒更新一次位置  
 ISL 頻寬：100MB
 ### 2.流量輸入
 ### 3.物理層與效能監控
