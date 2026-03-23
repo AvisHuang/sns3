@@ -313,6 +313,8 @@ Config::SetDefault("ns3::SatSGP4MobilityModel::UpdatePositionPeriod", TimeValue(
 
 ### routing演算法
 sns3是採用靜態指派的方法做路徑的規劃
+
+1.多撥routing
 ```
 void
 SetMulticastRouteToSourceNetworkSatHelper::(Ptr<Node> source, Ptr<Node> dest)
@@ -354,7 +356,7 @@ SetMulticastRouteToSourceNetworkSatHelper::(Ptr<Node> source, Ptr<Node> dest)
 
 
 
-1.global routing
+3.global routing
 
 使用[最短路徑演算法做計算](https://github.com/AvisHuang/sns3/blob/fe3a64fc064785cc0f2a98fdcec9066c5601fab4/global-route-manager-impl.cc#L1317)
 ```
