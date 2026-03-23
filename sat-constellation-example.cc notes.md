@@ -24,7 +24,7 @@ packetSize：封包大小(預設 512 bytes)
 interval：發送頻率(預設 20ms)  
 FWD_LINK/RTN_LINK：分別建立前向鏈路與反向鏈路的流量  
 輸出：  
-throughput資料
+throughput資料  
 <img width="418" height="608" alt="image" src="https://github.com/user-attachments/assets/c22aa70c-10f9-4a2f-b38c-8d2bdcae78a9" />
 
 #### 重要程式碼
