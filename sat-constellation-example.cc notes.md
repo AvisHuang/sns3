@@ -15,6 +15,9 @@ sat-constellation-example.cc 是一個 ns-3 衛星網路模擬的範例腳本
 SGP4 模型：透過SGP4模型每1秒更新一次位置  
 ISL 頻寬：100MB
 ### 2.流量輸入
+packetSize：封包大小(預設 512 bytes)
+interval：發送頻率(預設 20ms)
+FWD_LINK/RTN_LINK：分別建立前向鏈路與反向鏈路的流量。
 ### 3.物理層與效能監控
 #### 重要程式碼
 設定模擬時間:
