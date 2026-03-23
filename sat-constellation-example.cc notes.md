@@ -312,7 +312,49 @@ Config::SetDefault("ns3::SatSGP4MobilityModel::UpdatePositionPeriod", TimeValue(
   - SPF計算：藉由LSA建立拓撲資料庫(LSDB)
 
 ### routing演算法
-#### 1.global routing
+sns3是採用靜態指派的方法做路徑的規劃
+```
+void
+SetMulticastRouteToSourceNetworkSatHelper::(Ptr<Node> source, Ptr<Node> dest)
+{
+    NS_LOG_FUNCTION(this);//degug用
+
+    std::pair<Ptr<NetDevice>, Ptr<NetDevice>> devices;//準備一個容器來裝來源節點與目標節點之間的網卡
+
+    if (FindMatchingDevices(source, dest, devices)) //檢查source(這台衛星)和dest(所要檢查節點)是否有相連接,如果有則放進device容器中
+    {
+        Ipv4StaticRoutingHelper multicast; //宣告一個helper
+        Ptr<Ipv4StaticRouting> staticRouting =
+            multicast.GetStaticRouting(source->GetObject<ns3::Ipv4>());   //從這台source(衛星)的IPv4網路系統中，找出靜態路由表 並在之後會進行修改
+
+        // check if default multicast route already exists   定義組撥範圍
+        bool defaultMulticastRouteExists = false;     //檢查預設的多播路由是否已經存在,若否之後會去新增一條路徑
+        Ipv4Address defMulticastNetwork = Ipv4Address("224.0.0.0"); //多播起始地址
+        Ipv4Mask defMulticastNetworkMask = Ipv4Mask("240.0.0.0");   //遮罩：只需要看IP地址的前4位就好（對應二進位的 11110000...）
+
+        for (uint32_t i = 0; i < staticRouting->GetNRoutes(); i++) //會去靜態路油表找出有幾條路徑紀錄,然後去做迴圈
+        {
+            if (staticRouting->GetRoute(i).GetDestNetwork() == defMulticastNetwork //會去看現在所取出的目的地網路位址是不是剛才設定的 224.0.0.0,如果是就是給多撥群組專用的
+                staticRouting->GetRoute(i).GetDestNetworkMask() == defMulticastNetworkMask)//會取出第i條路徑的「網路遮罩」，看看是不是等於設定的 240.0.0.0。
+            {
+                defaultMulticastRouteExists = true; //如果都有符合就改為TRUE
+            }
+        }
+
+        // add default multicast route only if it does not exist already   
+        if (!defaultMulticastRouteExists)  //如果前面迴圈沒找到符合的路
+        {
+            multicast.SetDefaultMulticastRoute(source, devices.first);  //以後只要目的地是224.0.0.0/4，全部從devices.first這張網卡發射出去。
+        }
+    }
+}
+```
+
+
+
+
+
+1.global routing
 
 使用[最短路徑演算法做計算](https://github.com/AvisHuang/sns3/blob/fe3a64fc064785cc0f2a98fdcec9066c5601fab4/global-route-manager-impl.cc#L1317)
 ```
