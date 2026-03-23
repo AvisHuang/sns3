@@ -25,7 +25,6 @@ interval：發送頻率(預設 20ms)
 FWD_LINK/RTN_LINK：分別建立前向鏈路與反向鏈路的流量  
 輸出：  
 AddGlobalFwdAppThroughput:全網前向鏈路的應用層吞吐量
-### 3.物理層與效能監控
 #### 重要程式碼
 設定模擬時間:
 ```
