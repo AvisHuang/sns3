@@ -181,7 +181,6 @@ Config::SetDefault("ns3::SatSGP4MobilityModel::UpdatePositionPeriod", TimeValue(
 ## RTN routing
 <img width="1123" height="235" alt="image" src="https://github.com/user-attachments/assets/d0817099-7561-4589-b66f-c4d5527b8894" />
 
-> reference:https://github.com/AvisHuang/sns3/blob/main/global-routing.h
 
 ### USER->UT Routing
 <div align="center">
