@@ -182,11 +182,34 @@ Config::SetDefault("ns3::SatSGP4MobilityModel::UpdatePositionPeriod", TimeValue(
 > reference:https://github.com/AvisHuang/sns3/blob/main/global-routing.h
 
 ### USER->UT Routing
-<img width="559" height="474" alt="image" src="https://github.com/user-attachments/assets/e9db24f7-2272-49f8-b0a7-505c980f1fef" />
+<img width="559" height="474" alt="image" src="https://github.com/user-attachments/assets/e9db24f7-2272-49f8-b0a7-505c980f1fef" />  
 ```
 Ptr<Ipv4StaticRouting> routing = ipv4RoutingHelper.GetStaticRouting(ipv4);//從這節點會去get靜態路由表
 routing->SetDefaultRoute(addresses.GetAddress(0), 1);                     //
 NS_LOG_INFO("User default route: " << addresses.GetAddress(0));
+```
+
+### UT->Satellite
+<img width="560" height="583" alt="image" src="https://github.com/user-attachments/assets/004cd48f-566a-4ac1-8454-0181e64d8636" />
+```
+for (uint32_t j = 1; j < count; j++)
+{
+    std::string devName = ipv4Ut->GetNetDevice(j)->GetInstanceTypeId().GetName();
+
+    // 1. 識別衛星網卡：如果是衛星設備 (SatNetDevice)
+    if (devName == "ns3::SatNetDevice" || devName == "ns3::SatLorawanNetDevice")
+    {
+        Ptr<Ipv4StaticRouting> srUt = ipv4RoutingHelper.GetStaticRouting(ipv4Ut);
+        
+        // 2. 設定導航：將預設出口設為地面站的 IP (gwAddr)
+        srUt->SetDefaultRoute(gwAddr, j);
+        
+        NS_LOG_INFO("UT default route: " << gwAddr);
+
+        // 3. 設定 ARP 快取：讓 UT 知道地面站的 MAC 地址
+        ipv4Ut->GetInterface(j)->SetArpCache(utArpCache);
+    }
+}
 ```
 
 ### OSPFv2
