@@ -24,7 +24,9 @@ interval：發送頻率(預設 20ms)
 FWD_LINK/RTN_LINK：分別建立前向鏈路與反向鏈路的流量  
 輸出：  
 throughput資料  
-<img width="1000" height="600" alt="image" src="https://github.com/user-attachments/assets/a85b0fb7-c95d-4a0d-82da-a585a0565b55" />
+| fwd | rtn | 
+| ---| ---| 
+| <img width="1000" height="600" alt="image" src="https://github.com/user-attachments/assets/a85b0fb7-c95d-4a0d-82da-a585a0565b55" /> | <img width="1000" height="600" alt="image" src="https://github.com/user-attachments/assets/1d7205ce-0812-4c00-84d4-7c3ad499fb8d" /> |
 
 #### 重要程式碼
 設定模擬時間:
