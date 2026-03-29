@@ -183,6 +183,7 @@ Config::SetDefault("ns3::SatSGP4MobilityModel::UpdatePositionPeriod", TimeValue(
 
 ### USER->UT Routing
 <img width="559" height="474" alt="image" src="https://github.com/user-attachments/assets/e9db24f7-2272-49f8-b0a7-505c980f1fef" />  
+
 ```
 Ptr<Ipv4StaticRouting> routing = ipv4RoutingHelper.GetStaticRouting(ipv4);//從這節點會去get靜態路由表
 routing->SetDefaultRoute(addresses.GetAddress(0), 1);                     //預設的路徑(下一跳節點ip 通常是衛星,要送封包出去這個節點的介面)
@@ -191,6 +192,7 @@ NS_LOG_INFO("User default route: " << addresses.GetAddress(0));           //在�
 
 ### UT->Satellite
 <img width="560" height="583" alt="image" src="https://github.com/user-attachments/assets/004cd48f-566a-4ac1-8454-0181e64d8636" />  
+
 ```
 for (uint32_t j = 1; j < count; j++)
 {
@@ -214,6 +216,7 @@ for (uint32_t j = 1; j < count; j++)
 
 ### SAT->GW
 
+### GW->地面路由器
 
 
 
