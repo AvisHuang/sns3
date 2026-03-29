@@ -219,7 +219,11 @@ for (uint32_t j = 1; j < count; j++)
 ```
 
 ### SAT->GW
-
+因為是採用transparent mode 所以衛星不會有routing table
+其封包路徑為
+```
+srUt->SetDefaultRoute(gwAddr, j);
+```
 ### GW->地面路由器
 <div align="center">
 <img width="572" height="585" alt="image" src="https://github.com/user-attachments/assets/ea4458da-2797-4ad6-aeaa-a4638181789e" />
