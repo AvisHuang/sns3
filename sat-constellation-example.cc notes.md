@@ -38,11 +38,6 @@ Time startTime = Seconds(1.0);
 Time stopTime = Seconds(29.0);
 ```
 
-=
-<img width="1464" height="820" alt="image" src="https://github.com/user-attachments/assets/8db817e0-88de-47d0-9882-c3187e3decad" />
-
-
-<img width="647" height="569" alt="image" src="https://github.com/user-attachments/assets/0a105803-2885-4fcd-96d2-e6efe8abe221" />
 
 ## topology
 
