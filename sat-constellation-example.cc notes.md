@@ -178,12 +178,11 @@ Time stopTime = Seconds(29.0);
 Config::SetDefault("ns3::SatSGP4MobilityModel::UpdatePositionPeriod", TimeValue(Seconds(1)));
 ```
  
-## routing
+## RTN routing
 > reference:https://github.com/AvisHuang/sns3/blob/main/global-routing.h
 
 ### USER->UT Routing
 <div align="center">
-
 <img width="559" height="474" alt="image" src="https://github.com/user-attachments/assets/e9db24f7-2272-49f8-b0a7-505c980f1fef" />  
 </div>
 
@@ -195,10 +194,10 @@ NS_LOG_INFO("User default route: " << addresses.GetAddress(0));           //在�
 
 ### UT->Satellite
 <div align="center">
-
 <img width="560" height="583" alt="image" src="https://github.com/user-attachments/assets/004cd48f-566a-4ac1-8454-0181e64d8636" />  
 </div>
 
+[ref](https://github.com/AvisHuang/sns3/blob/7337834b7f52ef22ffad8cceace44bc5c8f8f019/satellite-user-helper.cc#L322)
 ```
 for (uint32_t j = 1; j < count; j++)
 {
@@ -224,7 +223,6 @@ for (uint32_t j = 1; j < count; j++)
 
 ### GW->地面路由器
 <div align="center">
-
 <img width="572" height="585" alt="image" src="https://github.com/user-attachments/assets/ea4458da-2797-4ad6-aeaa-a4638181789e" />
 </div>
 
