@@ -181,6 +181,14 @@ Config::SetDefault("ns3::SatSGP4MobilityModel::UpdatePositionPeriod", TimeValue(
 ## routing
 > reference:https://github.com/AvisHuang/sns3/blob/main/global-routing.h
 
+### USER->UT Routing
+<img width="559" height="474" alt="image" src="https://github.com/user-attachments/assets/e9db24f7-2272-49f8-b0a7-505c980f1fef" />
+```
+Ptr<Ipv4StaticRouting> routing = ipv4RoutingHelper.GetStaticRouting(ipv4);//從這節點會去get靜態路由表
+routing->SetDefaultRoute(addresses.GetAddress(0), 1);                     //
+NS_LOG_INFO("User default route: " << addresses.GetAddress(0));
+```
+
 ### OSPFv2
 - 一種網路協議,負責負責「收集資訊」和「制定規則」
   - 鄰居發現:發送hello封包確認路由器與誰連接
