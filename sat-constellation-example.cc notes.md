@@ -3,8 +3,7 @@
 
 # Table of Contents 
 - [說明](#說明)
-- [Step](#step)
-- [修改LEO環境](#修改leo環境)
+
 - [topology](#topology)
 - [routing](#routing)
 ## 一、說明
