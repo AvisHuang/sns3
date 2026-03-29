@@ -217,9 +217,11 @@ for (uint32_t j = 1; j < count; j++)
 ### SAT->GW
 
 ### GW->地面路由器
+<img width="572" height="585" alt="image" src="https://github.com/user-attachments/assets/ea4458da-2797-4ad6-aeaa-a4638181789e" />
 
-
-
+```
+routingGw->SetDefaultRoute(addresses.GetAddress(1), lastGwIf);
+```
 ### OSPFv2
 - 一種網路協議,負責負責「收集資訊」和「制定規則」
   - 鄰居發現:發送hello封包確認路由器與誰連接
@@ -271,57 +273,6 @@ SetMulticastRouteToSourceNetworkSatHelper::(Ptr<Node> source, Ptr<Node> dest)
 
 
 
-3.global routing
-
-使用[最短路徑演算法做計算](https://github.com/AvisHuang/sns3/blob/fe3a64fc064785cc0f2a98fdcec9066c5601fab4/global-route-manager-impl.cc#L1317)
-```
-void GlobalRouteManagerImpl::SPFCalculate (Ipv4Address root) {   //GlobalRouteManagerImpl為一個計算路徑的類別;SPFCalculate (Ipv4Address root)為計算最短路徑的函式(shortest path first);Ipv4Address root:現在這顆衛星的Ip
-    // 1. 初始化鏈路狀態資料庫（LSDB），確保所有的link狀態標記為未處理
-    m_lsdb->Initialize (); 
-    
-    // 建立一個待選名單
-    CandidateQueue candidate; 
-    
-    // 2. 建立起點節點（根節點），獲取該 IP 對應的 LSA 資訊，這是 Dijkstra 演算法的「起始點」
-    v = new SPFVertex (m_lsdb->GetLSA (root)); //傳入現在ip位置 然後去lsdb看跟鄰居的LSA(連線的資訊),SPFVertex為把現在的鏈路再加上標記(距離等等)
-    
-    // 將起點到自己的距離設為 0，因為出發點就在這裡
-    v->SetDistanceFromRoot (0); 
-    
-    // 開始無窮迴圈，直到所有可達的節點都被計算完畢並加入 SPF 樹
-    for (;;) {
-        // 3. 探測目前節點 (v) 的所有相連鄰居，計算經過 v 到鄰居的累積距離（Metric），並放入候選名單中
-        SPFNext (v, candidate); 
-        
-        // 如果候選隊列為空，代表所有能到達的節點都已經算完了，或是剩下的節點都不可達，跳出迴圈
-        if (candidate.Size () == 0) break; 
-        
-        // 4. 「貪婪選擇」：從候選隊列中彈出（Pop）目前累積距離最短的節點作為下一個處理對象
-        v = candidate.Pop (); 
-        
-        // 5. 判斷該節點是否為路由器（Router），如果是，則將其正式納入最短路徑樹中
-        if (v->GetVertexType () == SPFVertex::VertexRouter) {    //SPFVertex為最短路徑頂點物件,裡面有LSA,節點類型...
-            // 將計算好的最短路徑與下一跳（Next Hop）資訊寫入該節點的內部路由條目中
-            SPFIntraAddRouter (v); 
-        }
-    }
-}
-```
-
-### 寫入路由表
-```
-void GlobalRouteManagerImpl::SPFIntraAddRouter (SPFVertex* v) {
-    // 取得該節點的路由協議 
-    Ptr<Ipv4GlobalRouting> gr = router->GetRoutingProtocol ();
-    
-    // 遍歷所有計算出的出口方向
-    for (uint32_t i = 0; i < v->GetNRootExitDirections (); i++) {  //v->GetNRootExitDirections():到達這個頂點v有多少種等代價最短路徑
-        SPFVertex::NodeExit_t exit = v->GetRootExitDirection (i);
-        // 將計算結果增加到路由表中
-        gr->AddHostRouteTo (lr->GetLinkData (), exit.first, exit.second);//lr->GetLinkData()：目標節點的ip;exit.first下一跳IP;exit.second：本地出接口
-    }
-}
-```
 
 
 
