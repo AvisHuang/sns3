@@ -5,7 +5,7 @@
 - [說明](#說明)
 
 - [topology](#topology)
-- [RTNrouting](#RTN routing)
+- [RTN routing](#RTNrouting)
 ## 一、說明
 sat-constellation-example.cc 是一個 ns-3 衛星網路模擬的範例腳本
 ## 二、輸入及輸出
@@ -178,7 +178,7 @@ Time stopTime = Seconds(29.0);
 Config::SetDefault("ns3::SatSGP4MobilityModel::UpdatePositionPeriod", TimeValue(Seconds(1)));
 ```
  
-## RTN routing
+## RTNrouting
 <img width="1123" height="235" alt="image" src="https://github.com/user-attachments/assets/d0817099-7561-4589-b66f-c4d5527b8894" />
 
 
