@@ -232,7 +232,7 @@ srUt->SetDefaultRoute(gwAddr, j);
 [reference](https://github.com/AvisHuang/sns3/blob/7337834b7f52ef22ffad8cceace44bc5c8f8f019/satellite-user-helper.cc#L322)
 
 ```
-routingGw->SetDefaultRoute(addresses.GetAddress(1), lastGwIf);
+routingGw->SetDefaultRoute(addresses.GetAddress(1), lastGwIf);//設定路由(下一跳為地面路由器,出口介面為gw最後介面)GetAddress(0)是地面站自己在地面端的IP  GetAddress(1)是地面路由器的IP。
 ```
 ### OSPFv2
 - 一種網路協議,負責負責「收集資訊」和「制定規則」
