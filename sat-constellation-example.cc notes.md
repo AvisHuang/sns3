@@ -223,7 +223,7 @@ srUt->SetDefaultRoute(gwAddr, j);
 <img width="572" height="585" alt="image" src="https://github.com/user-attachments/assets/ea4458da-2797-4ad6-aeaa-a4638181789e" />
 </div>
 
-[reference]([https://github.com/AvisHuang/sns3/blob/7337834b7f52ef22ffad8cceace44bc5c8f8f019/satellite-user-helper.cc#L322](https://github.com/AvisHuang/sns3/blob/8212bba370c5b676e3a9ad127343f814525e2d1a/satellite-user-helper.cc#L322))
+[reference](https://github.com/AvisHuang/sns3/blob/33ee5ef6e5aa72b2ee8bd54a602d58604b961af1/satellite-user-helper.cc#L322)
 
 ```
 routingGw->SetDefaultRoute(addresses.GetAddress(1), lastGwIf);//設定路由(下一跳為地面路由器,出口介面為gw最後介面)GetAddress(0)是地面站自己在地面端的IP  GetAddress(1)是地面路由器的IP。
