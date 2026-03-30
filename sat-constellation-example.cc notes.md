@@ -189,7 +189,7 @@ Config::SetDefault("ns3::SatSGP4MobilityModel::UpdatePositionPeriod", TimeValue(
 
 ```
 Ptr<Ipv4StaticRouting> routing = ipv4RoutingHelper.GetStaticRouting(ipv4);//從這節點會去get靜態路由表
-routing->SetDefaultRoute(addresses.GetAddress(0), 1);                     //預設的路徑(下一跳節點ip 通常是衛星,要送封包出去這個節點的介面)
+routing->SetDefaultRoute(addresses.GetAddress(0), 1);                     //預設的路徑(下一跳節點ip ,要送封包出去這個節點的介面)
 NS_LOG_INFO("User default route: " << addresses.GetAddress(0));           //在終端機印出預設的路徑
 ```
 
