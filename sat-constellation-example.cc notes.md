@@ -5,7 +5,7 @@
 - [說明](#說明)
 
 - [topology](#topology)
-- [RTNrouting](#RTNrouting)
+- [RTNrouting](#RTN routing)
 ## 一、說明
 sat-constellation-example.cc 是一個 ns-3 衛星網路模擬的範例腳本
 ## 二、輸入及輸出
