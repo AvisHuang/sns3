@@ -321,52 +321,84 @@ SatUserHelper::EnableCreationTraces(Ptr<OutputStreamWrapper> stream, CallbackBas
 void
 SatUserHelper::InstallRouter(Ptr<Node> router)
 {
+    // Log記錄(除錯用)
     NS_LOG_FUNCTION(this);
 
+    // 抓取目前模擬環境裡所有的GW節點
     NodeContainer gwNodes = Singleton<SatTopology>::Get()->GetGwNodes();
 
+    // 開始跑迴圈：針對每一個GW，逐一與這台地面Router建立連線
     for (NodeContainer::Iterator i = gwNodes.Begin(); i != gwNodes.End(); i++)
     {
+        //  建立一個臨時容器，把目前的 GW與地面路由器放在一起
         NodeContainer gwRouter = NodeContainer((*i), router);
 
+        // 2. 安裝實體骨幹網路：在 GW 與 Router 之間拉一條虛擬的實體線 (Backbone)
         NetDeviceContainer nd = InstallBackboneNetwork(gwRouter);
+
+        // 3. 分配 IP：給剛拉好的這條線兩端發 IP 位址 (GW 拿 .1, Router 拿 .2)
         Ipv4InterfaceContainer addresses = m_ipv4Gw.Assign(nd);
+
+        // 4. 宣告一工具
         Ipv4StaticRoutingHelper ipv4RoutingHelper;
 
-        // Get IPv4 protocol implementations
+
+        // 5. 取得目前 GW 節點的 IPv4 通訊協定物件
         Ptr<Ipv4> ipv4Gw = (*i)->GetObject<Ipv4>();
+
+        // 6. 找出 GW 身上「剛插上去」的那張地面網卡的編號 (Index)
         uint32_t lastGwIf = ipv4Gw->GetNInterfaces() - 1;
+
+        // 7. 取得 GW 的靜態路由表 (routingGw)
         Ptr<Ipv4StaticRouting> routingGw = ipv4RoutingHelper.GetStaticRouting(ipv4Gw);
+
+        // 8. 讓 GW 將「預設出口」指向地面路由器 (地址為 addresses.GetAddress(1))
         routingGw->SetDefaultRoute(addresses.GetAddress(1), lastGwIf);
+
+        // 記錄 GW 路由設定完成的 Log
         NS_LOG_INFO("GW default route: " << addresses.GetAddress(1));
 
+        /* --- 以下是「設定 Router」的導航邏輯：處理下載 (Forward Link) --- */
+
+        // 9. 內層迴圈：遍歷 GW 身上已有的所有路由路徑，準備同步給地面路由器
         for (uint32_t routeIndex = 0; routeIndex < routingGw->GetNRoutes(); routeIndex++)
         {
-            // Get IPv4 protocol implementations
+            // A. 取得地面路由器節點的 IPv4 大腦
             Ptr<Ipv4> ipv4Router = router->GetObject<Ipv4>();
+
+            // B. 找出路由器身上「連往這個 GW」的那張網卡編號
             uint32_t lastRouterIf = ipv4Router->GetNInterfaces() - 1;
+
+            // C. 取得地面路由器的靜態路由表 (routingRouter)
             Ptr<Ipv4StaticRouting> routingRouter = ipv4RoutingHelper.GetStaticRouting(ipv4Router);
 
+            // D. 從 GW 的路由表中，讀取第 routeIndex 條路徑資訊
             Ipv4RoutingTableEntry route = routingGw->GetRoute(routeIndex);
+
+            // E. 查看這條路徑是從 GW 的哪張介面 (Interface) 進來的
             uint32_t interface = route.GetInterface();
 
-            // set only routes for interfaces created earlier (and not for local delivery index 0)
+            // F. 過濾條件：如果這條路不是 Loopback (0)，也不是連往路由器的介面 (lastGwIf)
+            // 代表這條路「一定是來自衛星端的用戶網段」！
             if ((interface != 0) && (interface != lastGwIf))
             {
+                // G. 核心設定：在地面路由器增加一條路徑，指回衛星用戶
+                // 意義：告訴路由器，要找衛星用戶網段 (route.GetDest())，請丟給這個 GW (addresses.GetAddress(0))
                 routingRouter->AddNetworkRouteTo(route.GetDest(),
                                                  route.GetDestNetworkMask(),
                                                  addresses.GetAddress(0),
                                                  lastRouterIf);
+
                 NS_LOG_INFO("Router network route:" << route.GetDest() << ", "
-                                                    << route.GetDestNetworkMask() << ", "
-                                                    << addresses.GetAddress(0));
+                                                 << route.GetDestNetworkMask() << ", "
+                                                 << addresses.GetAddress(0));
             }
         }
 
+        // 10. 當前這個 GW 設定完畢，宣告一個新的子網路，準備給下一個 GW 使用 (避免 IP 衝突)
         m_ipv4Gw.NewNetwork();
     }
 }
-
 NetDeviceContainer
 SatUserHelper::InstallSubscriberNetwork(const NodeContainer& c) const
 {
