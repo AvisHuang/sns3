@@ -200,20 +200,14 @@ NS_LOG_INFO("User default route: " << addresses.GetAddress(0));           //在�
 
 ```
 for (uint32_t j = 1; j < count; j++)  //遍歷UT所有節點的網卡介面;uint32_t:無負數整數佔用32個位元的記憶體空間;count:網卡總數
-
 {
     std::string devName = ipv4Ut->GetNetDevice(j)->GetInstanceTypeId().GetName();//取得這張網卡的名稱
-
     if (devName == "ns3::SatNetDevice" || devName == "ns3::SatLorawanNetDevice") //識別衛星網卡：如果是衛星設備
 
     {
         Ptr<Ipv4StaticRouting> srUt = ipv4RoutingHelper.GetStaticRouting(ipv4Ut); //取得該 UT 節點的靜態路由表指標;srUt=static routing of ut
-        
         srUt->SetDefaultRoute(gwAddr, j);        //  設定封包預設出口設為地面站的IP(gwAddr);j為現在節點的介面
-
-        
         NS_LOG_INFO("UT default route: " << gwAddr);
-
     }
 }
 ```
