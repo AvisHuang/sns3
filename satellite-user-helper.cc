@@ -324,7 +324,7 @@ SatUserHelper::InstallRouter(Ptr<Node> router)
     // Log記錄(除錯用)
     NS_LOG_FUNCTION(this);
 
-    // 抓取目前模擬環境裡所有的GW節點
+    // 用單個sattopology呼叫getnodes得到所有的地面站並存回gwnodes
     NodeContainer gwNodes = Singleton<SatTopology>::Get()->GetGwNodes();
 
     // 開始跑迴圈：針對每一個GW，逐一與這台地面Router建立連線
@@ -334,23 +334,23 @@ SatUserHelper::InstallRouter(Ptr<Node> router)
         NodeContainer gwRouter = NodeContainer((*i), router);
 
         // 2. 安裝實體骨幹網路：在 GW 與 Router 之間拉一條虛擬的實體線 (Backbone)
-        NetDeviceContainer nd = InstallBackboneNetwork(gwRouter);
+        NetDeviceContainer nd = InstallBackboneNetwork(gwRouter);//先建通道 再把兩端節點,再分別節點裝上網卡,接著接到一起;nd為容器 裝雙方的網卡
 
         // 3. 分配 IP：給剛拉好的這條線兩端發 IP 位址 (GW 拿 .1, Router 拿 .2)
-        Ipv4InterfaceContainer addresses = m_ipv4Gw.Assign(nd);
+        Ipv4InterfaceContainer addresses = m_ipv4Gw.Assign(nd);//建立address便容器並符合Ipv4InterfaceContainer類別,透過傳入包含兩端網卡的容器nd，讓地址助手m_ipv4Gw自動為這些硬體分配IP並建立介面。
 
-        // 4. 宣告一工具
+        // 4. 宣告一工具ipv4RoutingHelper
         Ipv4StaticRoutingHelper ipv4RoutingHelper;
 
 
-        // 5. 取得目前 GW 節點的 IPv4 通訊協定物件
+        // 從目前的地面站(GW)節點中，提取出其掛載的 IPv4 網路層協定實例，以便後續操作 IP 與路由設定      
         Ptr<Ipv4> ipv4Gw = (*i)->GetObject<Ipv4>();
 
-        // 6. 找出 GW 身上「剛插上去」的那張地面網卡的編號 (Index)
-        uint32_t lastGwIf = ipv4Gw->GetNInterfaces() - 1;
+        // 6. 找出 GW 的最後那張網卡的編號
+        uint32_t lastGwIf = ipv4Gw->GetNInterfaces() - 1;//使用ipv4物件呼叫GetNInterfaces()得到全部介面數量
 
         // 7. 取得 GW 的靜態路由表 (routingGw)
-        Ptr<Ipv4StaticRouting> routingGw = ipv4RoutingHelper.GetStaticRouting(ipv4Gw);
+        Ptr<Ipv4StaticRouting> routingGw = ipv4RoutingHelper.GetStaticRouting(ipv4Gw);//使用ipv4RoutingHelper去從gw的ipv4協議棧得到靜態路由協定物件(包括網路目標下一跳出口介面)
 
         // 8. 讓 GW 將「預設出口」指向地面路由器 (地址為 addresses.GetAddress(1))
         routingGw->SetDefaultRoute(addresses.GetAddress(1), lastGwIf);
