@@ -353,7 +353,7 @@ SatUserHelper::InstallRouter(Ptr<Node> router)
         Ptr<Ipv4StaticRouting> routingGw = ipv4RoutingHelper.GetStaticRouting(ipv4Gw);//使用ipv4RoutingHelper去從gw的ipv4協議棧得到靜態路由協定物件(包括網路目標下一跳出口介面)
 
         // 8. 讓 GW 將「預設出口」指向地面路由器 (地址為 addresses.GetAddress(1))
-        routingGw->SetDefaultRoute(addresses.GetAddress(1), lastGwIf);
+        routingGw->SetDefaultRoute(addresses.GetAddress(1), lastGwIf);//addresses.GetAddress(1)目標
 
         // 記錄 GW 路由設定完成的 Log
         NS_LOG_INFO("GW default route: " << addresses.GetAddress(1));
