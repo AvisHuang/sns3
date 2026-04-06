@@ -373,19 +373,18 @@ SatUserHelper::InstallRouter(Ptr<Node> router)
             // D. 從 GW 的路由表中，讀取第 routeIndex 條路徑資訊
             Ipv4RoutingTableEntry route = routingGw->GetRoute(routeIndex);//輸入現在現在這條路徑的index並使用getroute去得到該條路徑的資訊
 
-            // E. 查看這條路徑是從 GW 的哪張介面 (Interface) 進來的
-            uint32_t interface = route.GetInterface();
+            uint32_t interface = route.GetInterface();//得到出口介面
 
             // F. 過濾條件：如果這條路不是 Loopback (0)，也不是連往路由器的介面 (lastGwIf)
             // 代表這條路「一定是來自衛星端的用戶網段」！
-            if ((interface != 0) && (interface != lastGwIf))
+            if ((interface != 0) && (interface != lastGwIf))//排出interface是自己和gw的interface
             {
                 // G. 核心設定：在地面路由器增加一條路徑，指回衛星用戶
-                // 意義：告訴路由器，要找衛星用戶網段 (route.GetDest())，請丟給這個 GW (addresses.GetAddress(0))
-                routingRouter->AddNetworkRouteTo(route.GetDest(),
-                                                 route.GetDestNetworkMask(),
-                                                 addresses.GetAddress(0),
-                                                 lastRouterIf);
+                //實際加一條路由規則
+                routingRouter->AddNetworkRouteTo(route.GetDest(),//目的地:衛星用戶所在的網段地址。
+                                                 route.GetDestNetworkMask(),//該網段的範圍大小(遮罩)
+                                                 addresses.GetAddress(0),//下一跳 IP
+                                                 lastRouterIf);//出口介面
 
                 NS_LOG_INFO("Router network route:" << route.GetDest() << ", "
                                                  << route.GetDestNetworkMask() << ", "
