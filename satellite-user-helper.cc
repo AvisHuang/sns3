@@ -361,19 +361,17 @@ SatUserHelper::InstallRouter(Ptr<Node> router)
         /* --- 以下是「設定 Router」的導航邏輯：處理下載 (Forward Link) --- */
 
         // 9. 內層迴圈：遍歷 GW 身上已有的所有路由路徑，準備同步給地面路由器
-        for (uint32_t routeIndex = 0; routeIndex < routingGw->GetNRoutes(); routeIndex++)
+        for (uint32_t routeIndex = 0; routeIndex < routingGw->GetNRoutes(); routeIndex++)//宣告一routingindex做為迴圈的變數 使用routingGw物件去取得目前存在的路由總數
         {
             // A. 取得地面路由器節點的 IPv4 大腦
-            Ptr<Ipv4> ipv4Router = router->GetObject<Ipv4>();
+            Ptr<Ipv4> ipv4Router = router->GetObject<Ipv4>();//用router去getobject會得到ipv4類型的協議棧然後存進ipv4router(即可對ipv4類別的物件進行使用,e.g.GetAddress()SetDefaultRoute)
 
-            // B. 找出路由器身上「連往這個 GW」的那張網卡編號
-            uint32_t lastRouterIf = ipv4Router->GetNInterfaces() - 1;
+            uint32_t lastRouterIf = ipv4Router->GetNInterfaces() - 1;//會去找出剛剛所加上的router最後的介面
 
             // C. 取得地面路由器的靜態路由表 (routingRouter)
-            Ptr<Ipv4StaticRouting> routingRouter = ipv4RoutingHelper.GetStaticRouting(ipv4Router);
-
+            Ptr<Ipv4StaticRouting> routingRouter = ipv4RoutingHelper.GetStaticRouting(ipv4Router);//使用路由助手去執行ipv4指令中的get static routing存回routingRouter
             // D. 從 GW 的路由表中，讀取第 routeIndex 條路徑資訊
-            Ipv4RoutingTableEntry route = routingGw->GetRoute(routeIndex);
+            Ipv4RoutingTableEntry route = routingGw->GetRoute(routeIndex);//輸入現在現在這條路徑的index並使用getroute去得到該條路徑的資訊
 
             // E. 查看這條路徑是從 GW 的哪張介面 (Interface) 進來的
             uint32_t interface = route.GetInterface();
