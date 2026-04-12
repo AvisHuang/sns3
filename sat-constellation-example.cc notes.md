@@ -243,37 +243,37 @@ NetDeviceContainer
 2.建立A的網卡
 - 2.a 產出網卡物件
   ```
-  Ptr<PointToPointIslNetDevice> devA = m_deviceFactory.Create<PointToPointIslNetDevice>();
+  Ptr<PointToPointIslNetDevice> devA = m_deviceFactory.Create<PointToPointIslNetDevice>();// 設立一指標devA 會去factory建一個點對點的網卡
   ```
 - 2.b 分配硬體地址與物理指向
   ```
-  evA->SetAddress(Mac48Address::Allocate()); // 自動計算並分配一個唯一的 MAC 位址
-  devA->SetDestinationNode(b);               // 邏輯計算：告訴這張網卡，你的對面永遠是 Node B
-  devA->SetDataRate(m_dataRate);             // 設定傳輸速率（由 main 函式傳入，如 100Mb/s）
+  evA->SetAddress(Mac48Address::Allocate()); // 自動計算並分配一個的MAC位址
+  devA->SetDestinationNode(b);               // 設定這張網卡的接口指向NodeB
+  devA->SetDataRate(m_dataRate);             // 設定傳輸速率
   ```
-- 2.c 將網卡植入衛星B
+- 2.c 將網卡植入衛星A
   ```
-  a->AddDevice(devA);
+  a->AddDevice(devA);//將網卡植入節點中
   ```
 3.建立B的網卡
 - 3.a 產出網卡物件
   ```
-  Ptr<PointToPointIslNetDevice> devB = m_deviceFactory.Create<PointToPointIslNetDevice>();
+  Ptr<PointToPointIslNetDevice> devB = m_deviceFactory.Create<PointToPointIslNetDevice>();// 設立一指標devB 會去factory建一個點對點的網卡
   ```
 - 3.b 分配硬體地址與物理指向
   ```
-  devB->SetAddress(Mac48Address::Allocate());
-  devB->SetDestinationNode(a); // 注意：這裡是指向 A
+  devB->SetAddress(Mac48Address::Allocate());自動計算並分配一個的MAC位址
+  devB->SetDestinationNode(a); //設定這張網卡的接口指向NodeA
   devB->SetDataRate(m_dataRate);
   ```
 - 3.c 將網卡植入衛星B
   ```
-  devB->SetQueue(queueB);
+  b->AddDevice(devB);//將網卡植入節點中
   ```
 4.完成連線
 - 4.a 建立頻道
   ```
-  Ptr<PointToPointIslChannel> channel = m_channelFactory.Create<PointToPointIslChannel>();
+  Ptr<PointToPointIslChannel> channel = m_channelFactory.Create<PointToPointIslChannel>();//設立一指標devA 會去factory建一個點對點的通道
   ```
 - 4.b 接線
   ```
@@ -282,7 +282,7 @@ NetDeviceContainer
   ```
 5.回傳
 ```
-container.Add(devA);
+container.Add(devA);//加上剛裝上的網卡
 container.Add(devB);
 return container;
 ```
