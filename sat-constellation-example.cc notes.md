@@ -232,7 +232,8 @@ routingGw->SetDefaultRoute(addresses.GetAddress(1), lastGwIf);//設定路由(下
 ### ISL point-to-point helper
 
 <div align="center">
-<img width="550" height="1120" alt="image" src="https://github.com/user-attachments/assets/87cf7590-eac5-431a-a22c-b21666ea5eb4" />
+ <img width="500" height="700" alt="image" src="https://github.com/user-attachments/assets/fd7a615c-49f7-41c5-93d8-f82f4a787f08" />
+
 </div>
 
 1.準備容器(初始化)
