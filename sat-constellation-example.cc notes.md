@@ -228,11 +228,29 @@ srUt->SetDefaultRoute(gwAddr, j);
 ```
 routingGw->SetDefaultRoute(addresses.GetAddress(1), lastGwIf);//設定路由(下一跳為地面路由器,出口介面為gw最後介面)GetAddress(0)是地面站自己在地面端的IP  GetAddress(1)是地面路由器的IP。
 ```
-### OSPFv2
-- 一種網路協議,負責負責「收集資訊」和「制定規則」
-  - 鄰居發現:發送hello封包確認路由器與誰連接
-  - LSA泛洪：Router會交換LSA(包括:連到誰距離、彼此距離)
-  - SPF計算：藉由LSA建立拓撲資料庫(LSDB)
+
+### ISL point-to-point helper
+1.準備容器(初始化)
+```
+NetDeviceContainer
+```
+2.建立A的網卡
+- 2.a 實例化網卡
+- 2.b 分配硬體地址與物理指向
+- 2.c 將網卡植入衛星B
+3.建立B的網卡
+- 3.a 實例化網卡
+- 3.b 分配硬體地址與物理指向
+- 3.c 將網卡植入衛星B
+4.完成連線
+- 4.a 建立頻道
+- 4.b 接線
+5.回傳
+```
+container.Add(devA);
+container.Add(devB);
+return container;
+```
 
 ### routing演算法
 sns3是採用靜態指派的方法做路徑的規劃
