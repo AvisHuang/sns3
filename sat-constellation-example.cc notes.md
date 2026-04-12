@@ -266,8 +266,9 @@ NetDeviceContainer
   devB->SetDestinationNode(a); //設定這張網卡的接口指向NodeA
   devB->SetDataRate(m_dataRate);
   ```
-*allocate()函式
-一開始m_allocationIndex是64bit的二進位的序號 轉成mac layer ip時會自動刪減成48bit並做成6byte的轉換
+*allocate()函式:  
+一開始m_allocationIndex是64bit的二進位的序號 轉成mac layer ip時會自動刪減成48bit並做成6byte的轉換  
+每次有node呼叫allocate函示需要分配位置時m_allocationIndex會自動+1
 ```
 Mac48Address::Allocate()
 {
