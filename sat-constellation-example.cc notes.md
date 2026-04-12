@@ -4,8 +4,8 @@
 # Table of Contents 
 - [說明](#說明)
 
-- [topology](#topology)
-- [RTN routing](#RTNrouting)
+
+
 ## 一、說明
 sat-constellation-example.cc 是一個 ns-3 衛星網路模擬的範例腳本
 ## 二、輸入及輸出
@@ -235,16 +235,45 @@ routingGw->SetDefaultRoute(addresses.GetAddress(1), lastGwIf);//設定路由(下
 NetDeviceContainer
 ```
 2.建立A的網卡
-- 2.a 實例化網卡
+- 2.a 產出網卡物件
+  ```
+  Ptr<PointToPointIslNetDevice> devA = m_deviceFactory.Create<PointToPointIslNetDevice>();
+  ```
 - 2.b 分配硬體地址與物理指向
+  ```
+  evA->SetAddress(Mac48Address::Allocate()); // 自動計算並分配一個唯一的 MAC 位址
+  devA->SetDestinationNode(b);               // 邏輯計算：告訴這張網卡，你的對面永遠是 Node B
+  devA->SetDataRate(m_dataRate);             // 設定傳輸速率（由 main 函式傳入，如 100Mb/s）
+  ```
 - 2.c 將網卡植入衛星B
+  ```
+  a->AddDevice(devA);
+  ```
 3.建立B的網卡
-- 3.a 實例化網卡
+- 3.a 產出網卡物件
+  ```
+  Ptr<PointToPointIslNetDevice> devB = m_deviceFactory.Create<PointToPointIslNetDevice>();
+  ```
 - 3.b 分配硬體地址與物理指向
+  ```
+  devB->SetAddress(Mac48Address::Allocate());
+  devB->SetDestinationNode(a); // 注意：這裡是指向 A
+  devB->SetDataRate(m_dataRate);
+  ```
 - 3.c 將網卡植入衛星B
+  ```
+  devB->SetQueue(queueB);
+  ```
 4.完成連線
 - 4.a 建立頻道
+  ```
+  Ptr<PointToPointIslChannel> channel = m_channelFactory.Create<PointToPointIslChannel>();
+  ```
 - 4.b 接線
+  ```
+  devA->Attach(channel); // A 插上頻道
+  devB->Attach(channel); // B 插上頻道
+  ```
 5.回傳
 ```
 container.Add(devA);
