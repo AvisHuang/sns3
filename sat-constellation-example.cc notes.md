@@ -290,6 +290,8 @@ Mac48Address::Allocate()
     return address;
 }
 ```
+GW 3 00:00:00:00:00:11為第17呼叫allcate函式的node所以她二進位為0...00011111轉換成6byte即為00 00 00 00 00 00 11
+
 - 3.c 將網卡植入衛星B
   ```
   b->AddDevice(devB);//將網卡植入節點中
