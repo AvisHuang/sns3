@@ -266,6 +266,29 @@ NetDeviceContainer
   devB->SetDestinationNode(a); //設定這張網卡的接口指向NodeA
   devB->SetDataRate(m_dataRate);
   ```
+*allocate()函式
+一開始m_allocationIndex是64bit的二進位的序號 轉成mac layer ip時會自動刪減成48bit並做成6byte的轉換
+```
+Mac48Address::Allocate()
+{
+    NS_LOG_FUNCTION_NOARGS();
+
+    if (m_allocationIndex == 0)
+    {
+        Simulator::ScheduleDestroy(Mac48Address::ResetAllocationIndex);
+    }
+
+    m_allocationIndex++;
+    Mac48Address address;
+    address.m_address[0] = (m_allocationIndex >> 40) & 0xff;
+    address.m_address[1] = (m_allocationIndex >> 32) & 0xff;
+    address.m_address[2] = (m_allocationIndex >> 24) & 0xff;
+    address.m_address[3] = (m_allocationIndex >> 16) & 0xff;
+    address.m_address[4] = (m_allocationIndex >> 8) & 0xff;
+    address.m_address[5] = m_allocationIndex & 0xff;
+    return address;
+}
+```
 - 3.c 將網卡植入衛星B
   ```
   b->AddDevice(devB);//將網卡植入節點中
