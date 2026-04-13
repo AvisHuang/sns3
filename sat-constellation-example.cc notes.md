@@ -313,6 +313,16 @@ container.Add(devB);
 return container;
 ```
 
+layer3 ip分配
+<div align="center">
+<img width="206" height="612" alt="image" src="https://github.com/user-attachments/assets/1827936b-5f2e-49c1-bfdb-6091b7534d25" />  
+ 流程圖  
+
+</div>
+
+
+
+
 ### routing演算法
 sns3是採用靜態指派的方法做路徑的規劃
 
