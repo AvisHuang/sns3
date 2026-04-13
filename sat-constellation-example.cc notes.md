@@ -316,12 +316,31 @@ return container;
 ### layer3 ip分配
 <div align="center">
 <img width="206" height="612" alt="image" src="https://github.com/user-attachments/assets/1827936b-5f2e-49c1-bfdb-6091b7534d25" />  
+ 
  流程圖  
-
 </div>
 
+1.設定網段起始位置(原始碼寫在satellite-helper裡,但在constellation.cc裡有做修改)
+```
 
+```
+2.計算所需的網段大小
+```
 
+```
+
+3.交給User_helper
+```
+
+```
+4.建立節點
+```
+
+```
+5.分配ip
+```
+
+```
 
 ### routing演算法
 sns3是採用靜態指派的方法做路徑的規劃
