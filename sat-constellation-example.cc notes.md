@@ -322,18 +322,20 @@ return container;
 
 1.設定網段起始位置(原始碼寫在satellite-helper裡,但在constellation.cc裡有做修改)
 ```
-    Ipv4AddressValue("90.1.0.0"),
-
-  
+    Ipv4AddressValue("90.1.0.0"),//sat helper裡
+ //constellation.cc裡的
+    Config::SetDefault("ns3::SatHelper::BeamNetworkAddress", Ipv4AddressValue("20.1.0.0"));衛星isl的網段 第一條isl拿20.1.1.0 第一條isl中的sat1拿 20.1.1.1
+    Config::SetDefault("ns3::SatHelper::GwNetworkAddress", Ipv4AddressValue("10.1.0.0"));//gw的網段為10.1.0.0 第一個gw是10.1.1.0 第一個gw之後的ground router為10.1.1.1
+    Config::SetDefault("ns3::SatHelper::UtNetworkAddress", Ipv4AddressValue("250.1.0.0"));//ut的網段為250.1.0.0 第一個ut是250.1.1.0 第一個ut之後的user為250.1.1.1
 ```
 2.計算所需的網段大小
-```
-    CheckNetwork("GW",
-                 m_gwNetworkAddress,
-                 m_gwNetworkMask,
-                 networkAddresses,
-                 gwNetworkAddressCount,
-                 gwUsers);
+```   
+    CheckNetwork("GW",                     //傳入gw類別
+                 m_gwNetworkAddress,       //傳入起始網段
+                 m_gwNetworkMask,          //傳入遮罩
+                 networkAddresses,         //用起始ip+所有傳入的gwuser檢查是否<網段大小
+                 gwNetworkAddressCount,    //gw的數量
+                 gwUsers);                 //傳入所有的gwuser
     CheckNetwork("UT",
                  m_utNetworkAddress,
                  m_utNetworkMask,
@@ -344,8 +346,8 @@ return container;
 
 3.交給User_helper
 ```
-m_userHelper->SetGwBaseAddress(m_gwNetworkAddress, m_gwNetworkMask);
-m_userHelper->SetUtBaseAddress(m_utNetworkAddress, m_utNetworkMask);
+m_userHelper->SetGwBaseAddress(m_gwNetworkAddress, m_gwNetworkMask);//把gw起始ip和遮罩傳入Userhelper
+m_userHelper->SetUtBaseAddress(m_utNetworkAddress, m_utNetworkMask);//把ut起始ip和遮罩傳入Userhelper
 
 ```
 4.建立節點
