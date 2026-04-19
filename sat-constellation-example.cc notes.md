@@ -322,24 +322,42 @@ return container;
 
 1.設定網段起始位置(原始碼寫在satellite-helper裡,但在constellation.cc裡有做修改)
 ```
+    Ipv4AddressValue("90.1.0.0"),
 
+  
 ```
 2.計算所需的網段大小
 ```
-
+    CheckNetwork("GW",
+                 m_gwNetworkAddress,
+                 m_gwNetworkMask,
+                 networkAddresses,
+                 gwNetworkAddressCount,
+                 gwUsers);
+    CheckNetwork("UT",
+                 m_utNetworkAddress,
+                 m_utNetworkMask,
+                 networkAddresses,
+                 utNetworkAddressCount,
+                 utHostAddressCount);
 ```
 
 3.交給User_helper
 ```
+m_userHelper->SetGwBaseAddress(m_gwNetworkAddress, m_gwNetworkMask);
+m_userHelper->SetUtBaseAddress(m_utNetworkAddress, m_utNetworkMask);
 
 ```
 4.建立節點
 ```
+ NodeContainer gwNodes;
+ gwNodes.Create(m_satConf->GetGwCount());
+ internet.Install(gwNodes);
 
 ```
 5.分配ip
 ```
-
+m_userHelper->InstallGw(gwUsers);
 ```
 
 ### routing演算法
