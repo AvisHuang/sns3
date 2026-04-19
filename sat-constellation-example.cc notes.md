@@ -353,13 +353,13 @@ m_userHelper->SetUtBaseAddress(m_utNetworkAddress, m_utNetworkMask);//把ut起�
 4.建立節點
 ```
  NodeContainer gwNodes;
- gwNodes.Create(m_satConf->GetGwCount());
- internet.Install(gwNodes);
+ gwNodes.Create(m_satConf->GetGwCount());//去m_satConf取得有多少gw 然後把gw建起來
+ internet.Install(gwNodes);//把個別的gw裝上ip協議棧(還沒有ip位置)
 
 ```
 5.分配ip
 ```
-m_userHelper->InstallGw(gwUsers);
+m_userHelper->InstallGw(gwUsers);//把剛剛建好的node再利用Ipv4AddressHelper的 Assign()加上實際的ip
 ```
 
 ### routing演算法
