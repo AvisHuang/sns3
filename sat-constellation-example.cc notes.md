@@ -335,7 +335,7 @@ return container;
                  m_gwNetworkAddress,       //傳入起始網段
                  m_gwNetworkMask,          //傳入遮罩
                  networkAddresses,         //用來儲存gw sat ut的起始IP  
-                 gwNetworkAddressCount,    //gw的數量
+                 gwNetworkAddressCount,    //gw的網段數量  e.g.如果有3個GW就需要3子網段
                  gwUsers);                 //傳入所有的gwuser
     CheckNetwork("UT",
                  m_utNetworkAddress,
@@ -353,7 +353,6 @@ m_userHelper->SetUtBaseAddress(m_utNetworkAddress, m_utNetworkMask);//把ut起�
 ```
 4.建立節點
 ```
- NodeContainer gwNodes;
  gwNodes.Create(m_satConf->GetGwCount());//去m_satConf取得有多少gw 然後把gw建起來
  internet.Install(gwNodes);//把個別的gw裝上ip協議棧(還沒有ip位置)
 
