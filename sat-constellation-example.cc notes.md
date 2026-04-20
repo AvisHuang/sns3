@@ -329,11 +329,12 @@ return container;
     Config::SetDefault("ns3::SatHelper::UtNetworkAddress", Ipv4AddressValue("250.1.0.0"));//ut的網段為250.1.0.0 第一個ut是250.1.1.0 第一個ut之後的user為250.1.1.1
 ```
 2.計算所需的網段大小
-```   
-    CheckNetwork("GW",                     //傳入gw類別
+```
+//會使用gwUsers和m_gwNetworkMask先去比較mask的大小是否夠容納user數 再用user+mask去跟networkaddress比較是否占用到別人ip
+    CheckNetwork("GW",                     //傳入'GW'字串 有錯會報錯
                  m_gwNetworkAddress,       //傳入起始網段
                  m_gwNetworkMask,          //傳入遮罩
-                 networkAddresses,         //用起始ip+所有傳入的gwuser檢查是否<網段大小
+                 networkAddresses,         //用來儲存gw sat ut的起始IP  
                  gwNetworkAddressCount,    //gw的數量
                  gwUsers);                 //傳入所有的gwuser
     CheckNetwork("UT",
